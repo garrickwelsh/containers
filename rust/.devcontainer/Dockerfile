@@ -65,14 +65,17 @@ RUN set -x \
   && rm -r * \
   && echo "Done"
 
+WORKDIR /workspaces
+
 USER $USERNAME
 
 RUN set -x \
-     echo "Install rust tools" \
-     && rustup toolchain install stable \
-     && rustup toolchain install nightly  \
-     && rustup default stable  \
+     && sudo rmdir /tmp/build
+     && echo "Install rust tools" \
      && rustup component add rust-analyzer rust-docs rust-src clippy cargo rustfmt \
+     && rustup toolchain install nightly \
+     && rustup toolchain install stable \
+     && rustup default stable \
      # Install lunarvim (tree-sitter-cli is required to install lunarvim)
      && LV_BRANCH='release-1.4/neovim-0.9' \
      && curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/${LV_BRANCH}/utils/installer/install.sh|bash \
@@ -81,7 +84,6 @@ RUN set -x \
      # Fix for tmux not displaying unicode characters.
      && echo "export LANG=en_AU.UTF-8" >> ~/.bashrc
 
-WORKDIR /workspaces
 
 ######### Code Snippets ###########
 
