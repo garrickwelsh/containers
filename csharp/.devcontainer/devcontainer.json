@@ -1,8 +1,11 @@
 {
-  "build": { "dockerfile": "Dockerfile" },
+  "build": { 
+    "dockerfile": "../Dockerfile",
+    "context": "../.."
+  },
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/docker-from-docker": {
+    "ghcr.io/devcontainers/features/docker-in-docker": {
       "moby": true
     },
     "ghcr.io/devcontainers/features/dotnet" : {
