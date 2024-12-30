@@ -13,8 +13,6 @@ RUN set -x \
   && add-apt-repository ppa:neovim-ppa/unstable \
   && apt-get update \
   && apt-get install -y helix tmux tealdeer ripgrep neovim \
-  # Rust specific
-      rustup lldb \ 
   && locale-gen en_AU.UTF-8 && echo "LANG=en_AU.UTF-8" > /etc/locale.conf \
   # Install just
   && JUST_VERSION=$(curl -s "https://api.github.com/repos/casey/just/releases/latest" | jq -r .tag_name) \ 
@@ -36,8 +34,19 @@ RUN set -x \
   && tar zxvf difft-x86_64-unknown-linux-gnu.tar.gz \
   && rm difft-x86_64-unknown-linux-gnu.tar.gz \
   && install -Dm755 -t "/usr/local/bin" "${pkgname}" \
+  # Install omnisharp
+  && OMNISHARP_VERSION=$(curl -s "https://api.github.com/repos/OmniSharp/omnisharp-roslyn/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') \ 
+  && curl -Lo omnisharp-linux-x64-net6.0.tar.gz https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v${OMNISHARP_VERSION}/omnisharp-linux-x64-net6.0.tar.gz \
+  && tar zxvf omnisharp-linux-x64-net6.0.tar.gz \
+  && pkgname="OmniSharp" \
+  && install -Dm755 OmniSharp *.dll -t"$pkgdir"/usr/lib/omnisharp \
+  && install -Dm644 *.json          -t"$pkgdir"/usr/lib/omnisharp \
+  && install -dm755                   "$pkgdir"/usr/bin \
+  && ln -sf /usr/lib/omnisharp/OmniSharp "$pkgdir"/usr/bin/omnisharp \
+  && ln -sf /usr/lib/omnisharp/OmniSharp "$pkgdir"/usr/bin/OmniSharp \
+  && install -Dm644 license.md        "$pkgdir"/usr/share/licenses/$pkgname/license.md \
   # lunarvim pre-requistes
-  && apt-get install -y python3-pip npm \ 
+  && apt-get install -y python3-pip npm cargo \ 
   && npm install --global tree-sitter-cli \
   # Install Git UI
   && GITUI_VERSION=$(curl -s "https://api.github.com/repos/extrawurst/gitui/releases/latest" | jq -r .tag_name) \
@@ -67,19 +76,14 @@ RUN set -x \
 
 USER $USERNAME
 
-RUN set -x \
-     echo "Install rust tools" \
-     && rustup toolchain install stable \
-     && rustup toolchain install nightly  \
-     && rustup default stable  \
-     && rustup component add rust-analyzer rust-docs rust-src clippy cargo rustfmt \
-     # Install lunarvim (tree-sitter-cli is required to install lunarvim)
-     && LV_BRANCH='release-1.4/neovim-0.9' \
-     && curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/${LV_BRANCH}/utils/installer/install.sh|bash \
-     # Set difftastic as diff util
-     && git config --global diff.external difft \ 
-     # Fix for tmux not displaying unicode characters.
-     && echo "export LANG=en_AU.UTF-8" >> ~/.bashrc
+RUN set -x  \ 
+      # Install lunarvim (tree-sitter-cli is required to install lunarvim)
+      && LV_BRANCH='release-1.4/neovim-0.9' \
+      && curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/${LV_BRANCH}/utils/installer/install.sh|bash \
+      # Set difftastic as diff util
+      && git config --global diff.external difft \ 
+      # Fix for tmux not displaying unicode characters.
+      && echo "export LANG=en_AU.UTF-8" >> ~/.bashrc
 
 WORKDIR /workspaces
 

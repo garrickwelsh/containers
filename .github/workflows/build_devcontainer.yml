@@ -61,21 +61,14 @@ jobs:
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/rust-${{ env.IMAGE_NAME }}
           push: always
 
-      # Build image using Buildah action
-      # - name: Build Image
-      #   id: build_image
-      #   uses: redhat-actions/buildah-build@v2
-      #   with:
-      #     containerfiles: |
-      #       ./LanguageToolContainerfile
-      #     image: ${{ env.IMAGE_NAME }}
-      #     tags: |
-      #       ${{ steps.generate-tags.outputs.alias_tags }}
-      #     build-args: |
-      #       IMAGE_NAME=${{ env.IMAGE_NAME }}
-      #       IMAGE_VENDOR=${{ github.repository_owner }}
-      #     labels: ${{ steps.meta.outputs.labels }}
-      #     oci: false
+      - name: Build Devcontainer Image
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.IMAGE_REGISTRY }}/csharp-${{ env.IMAGE_NAME }}
+          imageTag: latest,${{ env.TIMESTAMP }}
+          subFolder: "csharp"
+          cacheFrom: ${{ env.IMAGE_REGISTRY }}/csharp-${{ env.IMAGE_NAME }}
+          push: always
 
   check:
     name: Check all builds successful

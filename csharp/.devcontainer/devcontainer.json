@@ -5,6 +5,10 @@
     "ghcr.io/devcontainers/features/docker-from-docker": {
       "moby": true
     },
+    "ghcr.io/devcontainers/features/dotnet" : {
+      "version": "latest",
+      "additionalVersions": "9.0,8.0"
+    }
   },
   "remoteEnv": {
     "PODMAN_USERNS": "keep-id"
@@ -21,17 +25,16 @@
         "ms-azuretools.vscode-docker",
         "ms-dotnettools.vscodeintellicode-csharp",
         "mutantdino.resourcemonitor",
-        "rust-lang.rust-analyzer",
-        "tomoyukim.vscode-mermaid-editor"
         // "ms-azuretools.vscode-bicep",
         // "ms-azure-devops.azure-pipelines",
-        // "ms-dotnettools.csdevkit",
-        // "ms-dotnettools.csharp",
-        // "ms-mssql.mssql",
-        // "ms-mssql.sql-database-projects-vscode",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-mssql.mssql",
+        "ms-mssql.sql-database-projects-vscode",
+        "tomoyukim.vscode-mermaid-editor"
       ],
     }
   },
-  // "postCreateCommand": "",
-  "postStartCommand": "rustup update"
+  "postCreateCommand": "dotnet workload update"
+  // "postStartCommand": ""
 }
