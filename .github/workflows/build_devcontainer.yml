@@ -79,7 +79,7 @@ jobs:
     needs: [build_rust_container, build_csharp_container]
     steps:
       - name: Exit on failure
-        if: ${{ needs.build_rust_container.result == 'failure' or needs.build_csharp_container.result == 'failure' }}
+        if: ${{ needs.build_rust_container.result == 'failure' || needs.build_csharp_container.result == 'failure' }}
         shell: bash
         run: exit 1
       - name: Exit
