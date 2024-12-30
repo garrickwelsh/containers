@@ -72,10 +72,10 @@ USER $USERNAME
 RUN set -x \
      && sudo rmdir /tmp/build \
      && echo "Install rust tools" \
+     && rustup default stable \
+     && rustup toolchain install stable \
      && rustup component add rust-analyzer rust-docs rust-src clippy cargo rustfmt \
      && rustup toolchain install nightly \
-     && rustup toolchain install stable \
-     && rustup default stable \
      # Install lunarvim (tree-sitter-cli is required to install lunarvim)
      && LV_BRANCH='release-1.4/neovim-0.9' \
      && curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/${LV_BRANCH}/utils/installer/install.sh|bash \
