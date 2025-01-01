@@ -28,8 +28,6 @@
         "ms-azuretools.vscode-docker",
         "ms-dotnettools.vscodeintellicode-csharp",
         "mutantdino.resourcemonitor",
-        // "ms-azuretools.vscode-bicep",
-        // "ms-azure-devops.azure-pipelines",
         "ms-dotnettools.csdevkit",
         "ms-dotnettools.csharp",
         "ms-mssql.mssql",
@@ -37,7 +35,5 @@
         "tomoyukim.vscode-mermaid-editor"
       ],
     }
-  },
-  "postCreateCommand": "dotnet workload update"
-  // "postStartCommand": ""
+  }
 }
