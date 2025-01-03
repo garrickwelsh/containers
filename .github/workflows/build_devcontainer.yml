@@ -52,7 +52,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Devcontainer Image
+      - name: Build Rust Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_rust_container
         with:
@@ -62,7 +62,7 @@ jobs:
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/rust-${{ env.IMAGE_NAME }}
           push: always
 
-      - name: Build Devcontainer Image
+      - name: Build CSharp Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_csharp_container
         with:
@@ -70,6 +70,16 @@ jobs:
           imageTag: latest,${{ env.TIMESTAMP }}
           subFolder: "csharp"
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/csharp-${{ env.IMAGE_NAME }}
+          push: always
+
+      - name: Build Networkutils Devcontainer Image
+        uses: devcontainers/ci@v0.3
+        id: build_networkutils_container
+        with:
+          imageName: ${{ env.IMAGE_REGISTRY }}/networkutils-${{ env.IMAGE_NAME }}
+          imageTag: latest,${{ env.TIMESTAMP }}
+          subFolder: "networkutils"
+          cacheFrom: ${{ env.IMAGE_REGISTRY }}/networkutils-${{ env.IMAGE_NAME }}
           push: always
 
   check:

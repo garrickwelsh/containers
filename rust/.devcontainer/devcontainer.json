@@ -25,6 +25,7 @@
         "ms-dotnettools.vscodeintellicode-csharp",
         "mutantdino.resourcemonitor",
         "rust-lang.rust-analyzer",
+        "gruntfuggly.todo-tree",
         "tomoyukim.vscode-mermaid-editor"
       ],
     }
