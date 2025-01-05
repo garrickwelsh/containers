@@ -8,6 +8,9 @@
     "ghcr.io/devcontainers/features/docker-from-docker": {
       "moby": true
     },
+    "ghcr.io/devcontainers/features/sshd:1": {
+        "version": "latest"
+    }
   },
   "remoteEnv": {
     "PODMAN_USERNS": "keep-id"
