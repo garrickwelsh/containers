@@ -68,7 +68,7 @@ jobs:
         with:
           imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp
           imageTag: latest,${{ env.TIMESTAMP }}
-          subFolder: "csharp"
+          subFolder: "csharp-helix"
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp
           push: always
 
