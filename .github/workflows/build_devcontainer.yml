@@ -98,7 +98,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build CSharp with Helix Devcontainer Image
+      - name: Build CSharp with cmdline tools Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_csharp_cmdline_tools_container
         with:
@@ -134,7 +134,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build CSharp with Helix Devcontainer Image
+      - name: Build CSharp with cmdline tools and sshd Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_csharp_cmdline_tools_sshd_container
         with:
