@@ -34,7 +34,7 @@ RUN set -x \
   && install -Dm644 license.md        "$pkgdir"/usr/share/licenses/$pkgname/license.md \
   # lunarvim pre-requistes
   && apt-get install -y python3-pip npm cargo \ 
-  && npm install --global tree-sitter-cli \
+  && npm install --global tree-sitter-cli dockerfile-language-server-nodejs @microsoft/compose-language-service \
   # Install Git UI
   && GITUI_VERSION=$(curl -s "https://api.github.com/repos/extrawurst/gitui/releases/latest" | jq -r .tag_name) \
   && curl -Lo gitui-linux-x86_64.tar.gz "https://github.com/extrawurst/gitui/releases/download/${GITUI_VERSION}/gitui-linux-x86_64.tar.gz" \
