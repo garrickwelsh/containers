@@ -56,6 +56,7 @@ RUN set -x \
   && tar zxf lazygit.tar.gz lazygit \
   && install -Dm755 -t "/usr/local/bin" lazygit \
   && rm lazygit.tar.gz \
+  && dotnet workload update \
   # clean up
   && apt-get clean \
   && rm -r * \
