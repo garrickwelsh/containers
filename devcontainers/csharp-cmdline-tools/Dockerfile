@@ -1,4 +1,4 @@
-FROM ghcr.io/garrickwelsh/devcontainer-csharp as intermediate
+FROM ghcr.io/garrickwelsh/devcontainer-csharp AS intermediate
 
 ARG USERNAME=vscode
 ARG USER_UID=1000
@@ -9,10 +9,13 @@ WORKDIR /tmp/build
 RUN set -x \
   && apt-get update \
   && apt-get install -y software-properties-common \
-  && add-apt-repository ppa:maveonair/helix-editor \
+  # && add-apt-repository ppa:maveonair/helix-editor \
+  # && add-apt-repository ppa:neovim-ppa/unstable \
+  # && apt-get update \
+  # && apt-get install -y helix tmux tealdeer ripgrep neovim \
   && add-apt-repository ppa:neovim-ppa/unstable \
   && apt-get update \
-  && apt-get install -y helix tmux tealdeer ripgrep neovim \
+  && apt-get install -y tmux tealdeer ripgrep neovim \
   && locale-gen en_AU.UTF-8 && echo "LANG=en_AU.UTF-8" > /etc/locale.conf \
   # Install difftastic
   && DIFFT_VERSION=$(curl -s "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | \grep -Po '"tag_name": *"\K[^"]*') \ 
@@ -56,12 +59,26 @@ RUN set -x \
   && tar zxf lazygit.tar.gz lazygit \
   && install -Dm755 -t "/usr/local/bin" lazygit \
   && rm lazygit.tar.gz \
+  # Install helix to get the latest version
+  && HELIX_VERSION=$(curl -s "https://api.github.com/repos/helix-editor/helix/releases/latest" | jq -r .tag_name) \
+  && curl -Lo helix-${HELIX_VERSION}-x86_64-linux.tar.xz https://github.com/helix-editor/helix/releases/download/${HELIX_VERSION}/helix-${HELIX_VERSION}-x86_64-linux.tar.xz \
+  && tar Jxf helix-${HELIX_VERSION}-x86_64-linux.tar.xz \
+  && cd helix-${HELIX_VERSION}-x86_64-linux \
+  && install -Dm755 -t "/usr/local/bin" hx \
+  && install -Dm644 -d "/usr/local/lib/helix" runtime \
+  && install -Dm644 -T contrib/completion/hx.bash "/usr/share/bash-completion/completions/hx" \
+  && install -Dm644 -T contrib/completion/hx.fish "/usr/share/fish/vendor_completions.d/hx.fish" \
+  && install -Dm644 -T contrib/completion/hx.zsh "/usr/share/zsh/site-functions/_hx" \
+  && cd .. \
+  && rm -r helix-${HELIX_VERSION}-x86_64-linux \
+  && rm helix-${HELIX_VERSION}-x86_64-linux.tar.xz \
   && dotnet workload update \
   # clean up
   && apt-get clean \
   && rm -r * \
   && echo "Done"
 
+  
 USER $USERNAME
 
 WORKDIR /home/$USERNAME
