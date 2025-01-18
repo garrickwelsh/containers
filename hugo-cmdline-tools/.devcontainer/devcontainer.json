@@ -1,0 +1,8 @@
+{
+	"name": "Hugo",
+	"build": {
+	  "dockerfile": "../Dockerfile",
+	  "context": "../.."
+	},
+  "containerUser": "vscode"
+}
