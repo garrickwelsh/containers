@@ -18,12 +18,6 @@
   "remoteEnv": {
     "PODMAN_USERNS": "keep-id"
   },
-  "forwardPorts": {
-  	"1313"
-  },
-  "runArgs": [
-  	"--network=host"
-  ],
   "containerUser": "vscode",
   "customizations": {
     "vscode": {
