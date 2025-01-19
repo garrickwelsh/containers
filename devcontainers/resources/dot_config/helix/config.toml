@@ -18,6 +18,7 @@ cursorline = true
 color-modes = true
 bufferline = "always"
 true-color = true
+end-of-line-diagnostics = "hint"
 
 [editor.indent-guides]
 render = true
@@ -30,9 +31,11 @@ center = []
 right = ["diagnostics", "workspace-diagnostics", "selections", "position", "file-encoding", "file-line-ending"]
 separator = "|"
 
+[editor.inline-diagnostics]
+cursor-line = "hint"
+
 [editor.whitespace]
 render = "all"
-
 
 [editor.cursor-shape]
 insert = "bar"
