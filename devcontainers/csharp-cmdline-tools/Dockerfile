@@ -78,7 +78,7 @@ RUN set -x \
   && rm -r * \
   && echo "Done"
 
-RUN docker pull mcr.microsoft.com/mssql/server:2022-latest
+RUN systemctl start docker && docker pull mcr.microsoft.com/mssql/server:2022-latest && systemctl stop docker
 
   
 USER $USERNAME
