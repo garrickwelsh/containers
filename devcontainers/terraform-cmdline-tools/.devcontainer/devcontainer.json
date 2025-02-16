@@ -1,0 +1,14 @@
+{
+  "build": { 
+    "dockerfile": "../Dockerfile",
+    "context": "../.."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/terraform:1": {}
+  },
+  "remoteEnv": {
+    "PODMAN_USERNS": "keep-id"
+  },
+  "containerUser": "vscode"
+}
