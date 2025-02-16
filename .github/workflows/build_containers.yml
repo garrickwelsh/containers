@@ -90,14 +90,14 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Rust Devcontainer Image
+      - name: Build Cmdline Tools Base Devcontainer Image
         uses: devcontainers/ci@v0.3
-        id: build_rust_container
+        id: build_cmdline_tools_base_container
         with:
-          imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-rust
+          imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-cmdline-tools-base
           imageTag: latest,${{ env.TIMESTAMP }}
-          subFolder: "devcontainers/rust"
-          cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-rust
+          subFolder: "devcontainers/cmdline-tools-base"
+          cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-cmdline-tools-base
           push: always
 
       - name: Build CSharp Devcontainer Image
@@ -157,7 +157,17 @@ jobs:
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-cmdline-tools
           push: always
 
-      - name: Build CSharp with cmdline tools Devcontainer Image
+      - name: Build Rust with cmdlien tools Devcontainer Image
+        uses: devcontainers/ci@v0.3
+        id: build_rust_container
+        with:
+          imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-rust
+          imageTag: latest,${{ env.TIMESTAMP }}
+          subFolder: "devcontainers/rust"
+          cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-rust
+          push: always
+
+      - name: Build Hugo with cmdline tools Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_hugo_cmdline_tools_container
         with:
