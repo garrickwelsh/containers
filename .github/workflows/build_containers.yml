@@ -90,6 +90,16 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: "Publish Features"
+        uses: devcontainers/action@v1
+        with:
+          publish-features: "true"
+          base-path-to-features: "./devcontainer-features"
+          generate-docs: "true"
+          
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Cmdline Tools Base Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_cmdline_tools_base_container
