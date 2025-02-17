@@ -157,7 +157,7 @@ jobs:
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-cmdline-tools
           push: always
 
-      - name: Build Rust with cmdlien tools Devcontainer Image
+      - name: Build Rust with cmdline tools Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_rust_container
         with:

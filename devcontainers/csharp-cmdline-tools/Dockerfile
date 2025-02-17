@@ -1,8 +1,9 @@
 FROM ghcr.io/garrickwelsh/devcontainer-cmdline-tools-base AS intermediate
 
 RUN set -x \
-  # Install omnisharp \
+  # Install omnisharp
   && OMNISHARP_VERSION=$(curl -s "https://api.github.com/repos/OmniSharp/omnisharp-roslyn/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') \ 
+  && mkdir -p /tmp/omnisharp && cd /tmp/omnisharp \
   && curl -Lo omnisharp-linux-x64-net6.0.tar.gz https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v${OMNISHARP_VERSION}/omnisharp-linux-x64-net6.0.tar.gz \
   && tar zxvf omnisharp-linux-x64-net6.0.tar.gz \
   && pkgname="OmniSharp" \
@@ -12,6 +13,7 @@ RUN set -x \
   && ln -sf /usr/lib/omnisharp/OmniSharp "$pkgdir"/usr/bin/omnisharp \
   && ln -sf /usr/lib/omnisharp/OmniSharp "$pkgdir"/usr/bin/OmniSharp \
   && install -Dm644 license.md        "$pkgdir"/usr/share/licenses/$pkgname/license.md \
+  && cd - && rm -rf /tmp/omnisharp
 
 
 ######### Code Snippets ###########

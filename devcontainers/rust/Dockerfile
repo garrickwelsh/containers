@@ -8,10 +8,8 @@ RUN set -x \
   && apt-get update \
   # Rust specific
   && apt-get install -y rustup lldb \ 
-  && locale-gen en_AU.UTF-8 && echo "LANG=en_AU.UTF-8" > /etc/locale.conf \
   # clean up
   && apt-get clean \
-  && rm -r * \
   && echo "Done"
 
 WORKDIR /workspaces
