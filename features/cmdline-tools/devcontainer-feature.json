@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -28,6 +28,51 @@
             "type": "boolean",
             "default": true,
             "description": "Install difftastic and setup as default git diff tool"
+        },
+        "neovim" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install neovim editor"
+        },
+        "helix" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install the helix editor"
+        },
+        "ripgrep" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install ripgrep"
+        },
+        "tealdeer" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install tealdeer a rust implementation of tldr."
+        },
+        "gitui" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install gitui a terminal ui for git."
+        },
+        "lazygit" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install lazygit a terminal ui for git."
+        },
+        "k9s" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install k9s a terminal ui for kubernetes."
+        },
+        "jq" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install jq a cmdline utility for manipulating json."
+        },
+        "tmux" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install tmux a terminal multiplexer."
         }
     },
     "installsAfter": [
