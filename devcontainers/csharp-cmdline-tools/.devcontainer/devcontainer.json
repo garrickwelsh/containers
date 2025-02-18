@@ -21,6 +21,8 @@
       "just": true,
       "difftastic" : true
     },
+    "ghcr.io/garrickwelsh/feature/language-servers:latest": {
+    },
     "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
       "csharp" : true
     }

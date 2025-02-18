@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -73,6 +73,17 @@
             "type": "boolean",
             "default": true,
             "description": "Install tmux a terminal multiplexer."
+        },
+        "rustup" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install rustup and lldb to develop rust."
+        },
+        "rustup_toolchain" : {
+            "type": "string",
+            "proposals": [ "stable", "beta", "nightly" ],
+            "default": "stable",
+            "description": "Install rustup and lldb to develop rust."
         }
     },
     "installsAfter": [

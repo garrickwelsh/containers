@@ -8,8 +8,6 @@ apt-get install -y software-properties-common jq
 if [[ "$JUST"x == "true"x ]]; then
   JUST_VERSION=$(curl -s "https://api.github.com/repos/casey/just/releases/latest" | jq -r .tag_name) 
   pkgname=just
-  mkdir -p /tmp/omnisharp
-  cd /tmp/omnisharp
   curl -Lo just.tar.gz "https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
   tar zxvf just.tar.gz
   rm just.tar.gz
@@ -20,8 +18,6 @@ if [[ "$JUST"x == "true"x ]]; then
   install -Dm644 -t "${pkgdir}/usr/local/share/elvish/lib/" "completions/${pkgname}.elvish"
   install -Dm644 -t "${pkgdir}/usr/local/share/fish/vendor_completions.d/" "completions/${pkgname}.fish"
   install -Dm644 -t "${pkgdir}/usr/local/share/zsh/site-functions/" "completions/${pkgname}.zsh"
-  cd -
-  rm -rf /tmp/omnisharp
 fi
 
 if "$DIFFTASTIC"x == "true"x ]]; then
@@ -98,6 +94,13 @@ fi
 if [[ "$DOTNET_SQLPACKAGE"x == "true"x ]]; then
   # Install support for Sql projects
   dotnet tool install --global Microsoft.SqlPackage
+fi
+
+if [[ "$RUSTUP"x == "true"x ]]; then
+  apt-get install -y rustup lldb
+  su $USER -c "rustup default $RUSTUP_TOOLCHAIN"
+  su $USER -c "rustup toolchain install $RUSTUP_TOOLCHAIN"
+  su $USER -c "rustup component add cargo clippy rustfmt rust-docs rust-src"
 fi
 
 if [[ "$JQ"x == "false"x ]]; then

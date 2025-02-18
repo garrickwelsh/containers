@@ -1,13 +1,18 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {
             "type": "boolean",
             "default": true,
             "description": "Install redhat yaml server"
+        },
+        "bash" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install bash language server"
         },
         "omnisharp" : {
             "type": "boolean",
