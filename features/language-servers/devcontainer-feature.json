@@ -1,7 +1,7 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {
@@ -14,11 +14,6 @@
             "default": true,
             "description": "Install bash language server"
         },
-        "omnisharp" : {
-            "type": "boolean",
-            "default": true,
-            "description": "Install omnisharp language server"
-        },
         "docker" : {
             "type": "boolean",
             "default": true,
@@ -29,10 +24,25 @@
             "default": true,
             "description": "Install docker compose language server"
         },
+        "marksman" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install marksman language server for the markdown language"
+        },
+        "markdown_oxide" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install markdown oxide language server for the markdown language"
+        },
         "terraform" : {
             "type": "boolean",
             "default": true,
             "description": "Install terraform-ls"
+        },
+        "omnisharp" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install omnisharp language server"
         },
         "rust": {
             "type": "boolean",

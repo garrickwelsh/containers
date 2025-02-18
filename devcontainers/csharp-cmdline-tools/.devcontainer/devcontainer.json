@@ -22,6 +22,7 @@
       "difftastic" : true
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
+      "omnisharp": true
     },
     "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
       "csharp" : true

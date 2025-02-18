@@ -10,6 +10,18 @@
     },
     "ghcr.io/devcontainers/features/sshd:1": {
         "version": "latest"
+    },
+    "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
+      "dotnet_outdated" : false,
+      "dotnet_ef": false,
+      "dotnet_sqlpackage": false,
+      "just": true,
+      "difftastic" : true
+    },
+    "ghcr.io/garrickwelsh/feature/language-servers:latest": {
+      "omnisharp": false,
+      "rust": true,
+      "rust_toolchain": "stable"
     }
   },
   "remoteEnv": {

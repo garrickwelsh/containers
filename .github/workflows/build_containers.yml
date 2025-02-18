@@ -125,16 +125,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Cmdline Tools Base Devcontainer Image
-        uses: devcontainers/ci@v0.3
-        id: build_cmdline_tools_base_container
-        with:
-          imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-cmdline-tools-base
-          imageTag: latest,${{ env.TIMESTAMP }}
-          subFolder: "devcontainers/cmdline-tools-base"
-          cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-cmdline-tools-base
-          push: always
-
       - name: Build CSharp Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_csharp_container
@@ -144,7 +134,6 @@ jobs:
           subFolder: "devcontainers/csharp"
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp
           push: always
-
 
       - name: Build Hugo Devcontainer Image
         uses: devcontainers/ci@v0.3

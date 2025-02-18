@@ -49,6 +49,20 @@ if [[ "$RUST"x == "true" ]]; then
   su $USER -c "rustup component add rust-analyzer"
 fi
 
+if [[ "$MARKSMAN"x == "true"x ]]; then
+  # Install marksman
+  MARKSMAN_VERSION=$(curl -s "https://api.github.com/repos/artempyanykh/marksman/releases/latest" | jq .tag_name | grep -Po '\K[^"]*')
+  curl -Lo marksman https://github.com/artempyanykh/marksman/releases/download/$MARKSMAN_VERSION/marksman-linux-x64
+  install -Dm755 -t "/usr/local/bin" marksman
+fi  
+if [[ "$MARKDOWN_OXIDE"x == "true"x ]]; then
+  # Install markdown-oxide
+  MARKDOWN_OXIDE_VERSION=$(curl -s "https://api.github.com/repos/Feel-ix-343/markdown-oxide/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  curl -Lo markdown-oxide https://github.com/Feel-ix-343/markdown-oxide/releases/download/v$MARKDOWN_OXIDE_VERSION/markdown-oxide-v${MARKDOWN_OXIDE_VERSION}-x86_64-unknown-linux-gnu
+  install -Dm755 -t "/usr/local/bin" markdown-oxide
+  rm markdown-oxide
+fi
+
 if [[ "$JQ"x == ""x ]]; then
   dpkg --remove jq
 fi

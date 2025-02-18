@@ -4,5 +4,20 @@
 	  "dockerfile": "../Dockerfile",
 	  "context": "../.."
 	},
+	"features": {
+    "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
+      "dotnet_outdated" : false,
+      "dotnet_ef": false,
+      "dotnet_sqlpackage": false,
+      "just": true,
+      "difftastic" : true
+    },
+    "ghcr.io/garrickwelsh/feature/language-servers:latest": {
+      "omnisharp": false
+    },
+    "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
+      "csharp" : false
+    }
+  },
   "containerUser": "vscode"
 }
