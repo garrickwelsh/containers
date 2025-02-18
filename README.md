@@ -1,13 +1,17 @@
 # Containers 
-This repository contains devcontainer and container definitions that are utilised to provide tools and environments for my use. 
+This repository contains devcontainer, devcontainer feature and container definitions that are utilised to provide tools and environments for my use (and anyone else).
 
-## devcontainers
+## Devcontainers
 Development containers - Environments for building code.
 
 ### Goals
 * A developer environment that can be reused for multiple projects and shifts the load of devcontainer builds to the server. 
 * Command line tools are a first class citizen.
 * Support for Helix and Neovim.
+
+## Devcontainer features
+
+These features are a convenience to quickly get command line tools installed for use within devcontainers. They are broken up into cmdline-tools, language servers and preparation/setup.
 
 ### Features
 

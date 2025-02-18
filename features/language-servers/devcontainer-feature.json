@@ -1,0 +1,43 @@
+{
+    "name": "Language servers",
+    "id": "language-servers",
+    "version": "0.0.1",
+    "description": "Install language servers to support editors.",
+    "options": {
+        "yaml" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install redhat yaml server"
+        },
+        "omnisharp" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install omnisharp language server"
+        },
+        "docker" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install docker language server"
+        },
+        "docker_compose" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install docker compose language server"
+        },
+        "terraform" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install terraform-ls"
+        },
+        "rust": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install rust analyzer (requires rustup)"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/dotnet",
+        "ghcr.io/devcontainers/features/node:1",
+        "ghcr.io/prom3theu5/aspirational-manifests/aspirate"
+    ]
+}
