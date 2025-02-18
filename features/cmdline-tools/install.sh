@@ -6,6 +6,8 @@ apt-get update
 apt-get install -y software-properties-common jq
 
 if [[ "$JUST"x == "true"x ]]; then
+  APPLICATION=just
+  echo "##### Installing $APPLICATION #####"
   JUST_VERSION=$(curl -s "https://api.github.com/repos/casey/just/releases/latest" | jq -r .tag_name) 
   pkgname=just
   curl -Lo just.tar.gz "https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
@@ -18,10 +20,13 @@ if [[ "$JUST"x == "true"x ]]; then
   install -Dm644 -t "${pkgdir}/usr/local/share/elvish/lib/" "completions/${pkgname}.elvish"
   install -Dm644 -t "${pkgdir}/usr/local/share/fish/vendor_completions.d/" "completions/${pkgname}.fish"
   install -Dm644 -t "${pkgdir}/usr/local/share/zsh/site-functions/" "completions/${pkgname}.zsh"
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if "$DIFFTASTIC"x == "true"x ]]; then
   # Install difftastic
+  APPLICATION=difftastic
+  echo "##### Installing $APPLICATION #####"
   DIFFT_VERSION=$(curl -s "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | jq .tag_name)
   pkgname=difft
   curl -Lo difft-x86_64-unknown-linux-gnu.tar.gz https://github.com/Wilfred/difftastic/releases/download/${DIFFT_VERSION}/difft-x86_64-unknown-linux-gnu.tar.gz
@@ -29,9 +34,12 @@ if "$DIFFTASTIC"x == "true"x ]]; then
   rm difft-x86_64-unknown-linux-gnu.tar.gz
   install -Dm755 -t "/usr/local/bin" "${pkgname}"
   su $USER -c "git config --global diff.external difft"
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$HELIX"x == "true"x ]]; then
+  APPLICATION=helix
+  echo "##### Installing $APPLICATION #####"
   # Install helix to get the latest version
   HELIX_VERSION=$(curl -s "https://api.github.com/repos/helix-editor/helix/releases/latest" | jq -r .tag_name)
   curl -Lo helix-${HELIX_VERSION}-x86_64-linux.tar.xz https://github.com/helix-editor/helix/releases/download/${HELIX_VERSION}/helix-${HELIX_VERSION}-x86_64-linux.tar.xz
@@ -45,62 +53,125 @@ if [[ "$HELIX"x == "true"x ]]; then
   cd ..
   rm -r helix-${HELIX_VERSION}-x86_64-linux
   rm helix-${HELIX_VERSION}-x86_64-linux.tar.xz
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$NEOVIM"x == "true"x ]]; then
+  APPLICATION=neovim
+  echo "##### Installing $APPLICATION #####"
   add-apt-repository ppa:neovim-ppa/unstable
   apt-get update
   apt-get install -y neovim
+  echo "##### Installed $APPLICATION #####"
 fi
+
 if [[ "$TEALDEER"x == "true"x ]]; then
-  apt-get install -y tmux tealdeer ripgrep
+  APPLICATION=tealdeer
+  echo "##### Installing $APPLICATION #####"
+  apt-get install -y tealdeer
+  echo "##### Installed $APPLICATION #####"
 fi
+
 if [[ "$RIPGREP"x == "true"x ]]; then
+  APPLICATION=ripgrep
+  echo "##### Installing $APPLICATION #####"
   apt-get install -y ripgrep
+  echo "##### Installed $APPLICATION #####"
 fi
+
 if [[ "$TMUX"x == "true"x ]]; then
+  APPLICATION=tmux
+  echo "##### Installing $APPLICATION #####"
   apt-get install -y tmux
+  echo "##### Installed $APPLICATION #####"
 fi
+
 if [[ "$GITUI"x == "true"x ]]; then
+  APPLICATION=gitui
   GITUI_VERSION=$(curl -s "https://api.github.com/repos/extrawurst/gitui/releases/latest" | jq -r .tag_name)
+  echo "##### Installing $APPLICATION - $GITUI_VERSION #####"
   curl -Lo gitui-linux-x86_64.tar.gz "https://github.com/extrawurst/gitui/releases/download/${GITUI_VERSION}/gitui-linux-x86_64.tar.gz"
   tar xvf gitui-linux-x86_64.tar.gz
   rm gitui-linux-x86_64.tar.gz
   install -Dm755 -t "/usr/local/bin" gitui
+  echo "##### Installed $APPLICATION #####"
 fi
-if [[ "$lazygit"x == "true"x ]]; then
+
+if [[ "$LAZYGIT"x == "true"x ]]; then
+  APPLICATION=lazygit
   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  echo "##### Installing $APPLICATION  - $LAZYGIT_VERSION #####"
   curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
   tar zxf lazygit.tar.gz lazygit
   install -Dm755 -t "/usr/local/bin" lazygit
   rm lazygit.tar.gz
+  echo "##### Installed $APPLICATION #####"
 fi
+
+if [[ "$LAZYDOCKER"x == "true"x ]]; then
+  APPLICATION=lazydocker
+  LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  echo "##### Installing $APPLICATION - $LAZYDOCKER_VERSION #####"
+  curl -Lo lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz"
+  tar zxf lazydocker.tar.gz lazydocker
+  install -Dm755 -t "/usr/local/bin" lazydocker
+  rm lazydocker.tar.gz
+  echo "##### Installed $APPLICATION #####"
+fi
+
+
+if [[ "$OXKER"x == "true"x ]]; then
+  APPLICATION=oxker
+  OXKER_VERSION=$(curl -s "https://api.github.com/repos/mrjackwills/oxker/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  echo "##### Installing $APPLICATION - $OXKER_VERSION #####"
+  curl -Lo oxker.tar.gz https://github.com/mrjackwills/oxker/releases/download/v${OXKER_VERSION}/oxker_linux_x86_64.tar.gz
+  tar zxf oxker.tar.gz oxker
+  install -Dm755 -t "/usr/local/bin" oxker
+  rm oxker.tar.gz
+  echo "##### Installed $APPLICATION #####"
+fi
+
 if [[ "$K9S"x == "true"x ]]; then
+  APPLICATION=k9s
   K9S_VERSION=$(curl -s "https://api.github.com/repos/derailed/k9s/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  echo "##### Installing $APPLICATION - $K9S_VERSION #####"
   curl -Lo k9s_linux_amd64.deb https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_amd64.deb
   dpkg --install k9s_linux_amd64.deb 
   rm k9s_linux_amd64.deb 
+  echo "##### Installed $APPLICATION #####"
 fi
 
 # Install dotnet tooling
 if [[ "$DOTNET_OUTDATED"x == "true"x ]]; then
-  dotnet tool install --global dotnet-outdated-tool
+  APPLICATION=dotnet_outdated
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "dotnet tool install --global dotnet-outdated-tool"
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$DOTNET_EF"x == "true"x ]]; then
-  dotnet tool install --global dotnet-ef
+  APPLICATION=dotnet_ef
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "dotnet tool install --global dotnet-ef"
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$DOTNET_SQLPACKAGE"x == "true"x ]]; then
   # Install support for Sql projects
-  dotnet tool install --global Microsoft.SqlPackage
+  APPLICATION=dotnet_sqlpackage
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "dotnet tool install --global Microsoft.SqlPackage"
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$RUSTUP"x == "true"x ]]; then
+  APPLICATION=rustup
+  echo "##### Installing $APPLICATION #####"
   apt-get install -y rustup lldb
   su $USER -c "rustup default $RUSTUP_TOOLCHAIN"
   su $USER -c "rustup toolchain install $RUSTUP_TOOLCHAIN"
   su $USER -c "rustup component add cargo clippy rustfmt rust-docs rust-src"
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$JQ"x == "false"x ]]; then
