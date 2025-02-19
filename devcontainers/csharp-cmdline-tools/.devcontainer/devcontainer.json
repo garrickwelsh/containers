@@ -14,6 +14,7 @@
     },
     "ghcr.io/prom3theu5/aspirational-manifests/aspirate:latest": {},
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    "ghcr.io/devcontainers-extra/features/kind:1": {},
     "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
       "dotnet_outdated" : true,
       "dotnet_ef": true,

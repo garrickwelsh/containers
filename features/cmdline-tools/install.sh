@@ -69,6 +69,7 @@ if [[ "$TEALDEER"x == "true"x ]]; then
   APPLICATION=tealdeer
   echo "##### Installing $APPLICATION #####"
   apt-get install -y tealdeer
+  su $USER -c "tldr --update"
   echo "##### Installed $APPLICATION #####"
 fi
 
