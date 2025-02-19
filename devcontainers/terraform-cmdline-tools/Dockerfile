@@ -4,10 +4,6 @@ ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-COPY resources/dot_config/ .config
-
-WORKDIR /workspaces
-
 ######### Code Snippets ###########
 
   # Setup vscode user if they don't already exist

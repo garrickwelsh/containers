@@ -66,7 +66,7 @@ jobs:
             ${{ env.IMAGE_REGISTRY }}/languagetool:${{ env.TIMESTAMP }}
       
   build-devcontainer-features:
-    name: build devcontainer base for rust and csharp
+    name: build devcontainer features
     runs-on: ubuntu-latest
     continue-on-error: false
     permissions:
@@ -93,7 +93,7 @@ jobs:
         uses: devcontainers/action@v1
         with:
           publish-features: "true"
-          base-path-to-features: "./features"
+          base-path-to-features: "./features/src"
           generate-docs: "true"
           features-namespace: "garrickwelsh/feature"          
         env:
@@ -145,32 +145,6 @@ jobs:
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-hugo
           push: always
 
-  build-devcontainers-with-cmdline-tools:
-    name: build csharp, rust and hugo with cmdline-tools
-    runs-on: ubuntu-latest
-    needs: [ build-devcontainers, build-devcontainer-features ]
-    continue-on-error: false
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-    strategy:
-      fail-fast: false
-
-    steps:
-      - name: set TIMESTAMP
-        run: echo "TIMESTAMP=$(date +'%Y%m%d.%H.%M.%S')" >> $GITHUB_ENV
-
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2 
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build CSharp with cmdline tools Devcontainer Image
         uses: devcontainers/ci@v0.3
         id: build_csharp_cmdline_tools_container
@@ -214,7 +188,7 @@ jobs:
   build-devcontainers-with-cmdline-tools-sshd:
     name: Build csharp with codespaces support
     runs-on: ubuntu-latest
-    needs: [ build-devcontainers-with-cmdline-tools ]
+    needs: [ build-devcontainers ]
     continue-on-error: false
     permissions:
       contents: read
@@ -251,7 +225,7 @@ jobs:
     name: Check all builds successful
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    needs: [build-devcontainers, build-devcontainers-with-cmdline-tools, build-devcontainers-with-cmdline-tools-sshd]
+    needs: [build-devcontainer-features, build-devcontainers, build-devcontainers-with-cmdline-tools-sshd]
     steps:
       - name: Exit on failure
         if: ${{ needs.build_rust_container.result == 'failure' || needs.build_csharp_container.result == 'failure' ||  needs.build_csharp_cmdline_tools_container.result == 'failure' ||  needs.build_csharp_cmdline_tools_sshd_container.result == 'failure'}}

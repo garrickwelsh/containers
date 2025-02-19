@@ -175,6 +175,14 @@ if [[ "$RUSTUP"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+echo "##### Start setting locale #####"
+echo "LANG=${LANG}" > /etc/locale.conf
+locale-gen
+echo "##### Ended setting locale #####"
+echo "##### Copying default sensible configuration for devcontainer cmdline utilities #####"
+su $USER -c "cp -r ../../resources/dot_config .config"
+echo "##### copied default sensible configuration for devcontainer cmdline utilities #####"
+
 if [[ "$JQ"x == "false"x ]]; then
   dpkg --remove jq
 fi
