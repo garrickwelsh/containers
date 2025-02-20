@@ -38,6 +38,19 @@ if [[ "${BASH}"x == "true"x ]]; then
   npm install --global bash-language-server
 fi
 
+if [[ "${HTML}"x == "true"x ]]; then
+  npm install --global vscode-html-languageservice
+fi
+if [[ "${CSS}"x == "true"x ]]; then
+  npm install --global vscode-css-languageservice
+fi
+if [[ "${TYPESCRIPT}"x == "true"x ]]; then
+  npm install --global typescript-language-server typescript
+fi
+if [[ "${VUE}"x == "true"x ]]; then
+  npm install --global @vue/language-server
+fi
+
 if [[ "${TERRAFORM}"x == "true"x ]]; then
   curl https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list

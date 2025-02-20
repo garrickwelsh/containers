@@ -1,7 +1,7 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {
@@ -33,6 +33,32 @@
             "type": "boolean",
             "default": true,
             "description": "Install markdown oxide language server for the markdown language"
+        },
+
+        "markdown_oxide" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install markdown oxide language server for the markdown language"
+        },
+        "html" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install html language server"
+        },
+        "css" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install css language server"
+        },
+        "typescript" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install typescript / javascript language server"
+        },
+        "vue" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install vue language server"
         },
         "terraform" : {
             "type": "boolean",
