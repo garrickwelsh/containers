@@ -1,7 +1,7 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {
@@ -76,9 +76,11 @@
             "description": "Install rust analyzer (requires rustup)"
         }
     },
+    "dependsOn" : { "ghcr.io/devcontainers/features/node" : {} },
     "installsAfter": [
         "ghcr.io/devcontainers/features/dotnet",
         "ghcr.io/devcontainers/features/node:1",
+        "ghcr.io/garrickwelsh/feature/cmdline-tools",
         "ghcr.io/prom3theu5/aspirational-manifests/aspirate"
     ]
 }
