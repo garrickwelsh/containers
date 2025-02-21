@@ -10,7 +10,8 @@
       "dotnet_ef": false,
       "dotnet_sqlpackage": false,
       "just": true,
-      "difftastic" : true
+      "difftastic" : true,
+      "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
       "omnisharp": false

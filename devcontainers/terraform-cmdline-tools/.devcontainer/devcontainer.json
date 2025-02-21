@@ -5,7 +5,15 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/aws-cli:1": {},
-    "ghcr.io/devcontainers/features/terraform:1": {}
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
+      "lang": "en_AU.UTF-8"
+    },
+    "ghcr.io/garrickwelsh/feature/language-servers:latest": {
+    },
+//    "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
+//      "csharp": false
+//    }
   },
   "remoteEnv": {
     "PODMAN_USERNS": "keep-id"

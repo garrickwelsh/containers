@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.7",
+    "version": "0.0.12",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -78,6 +78,11 @@
             "type": "boolean",
             "default": true,
             "description": "Install jq a cmdline utility for manipulating json."
+        },
+        "net_utils" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install network utilities - ping, route, nslookup, dig, nmap, traceroute"
         },
         "tmux" : {
             "type": "boolean",

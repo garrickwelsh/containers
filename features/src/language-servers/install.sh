@@ -22,7 +22,8 @@ if [[ "$OMNISHARP"x == "true"x ]]; then
   ln -sf /usr/lib/omnisharp/OmniSharp "$pkgdir"/usr/bin/omnisharp
   ln -sf /usr/lib/omnisharp/OmniSharp "$pkgdir"/usr/bin/OmniSharp
   install -Dm644 license.md        "$pkgdir"/usr/share/licenses/$pkgname/license.md
-  cd - && rm -rf /tmp/omnisha
+  cd - && rm -rf /tmp/omnisharp
+  su $USER -c "cp -r -H --verbose dot_omnisharp ~/.omnisharp"
 fi
 
 if [[ "${DOCKER}"x == "true"x ]]; then

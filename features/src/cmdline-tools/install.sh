@@ -23,7 +23,7 @@ if [[ "$JUST"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
-if "$DIFFTASTIC"x == "true"x ]]; then
+if [[ "$DIFFTASTIC"x == "true"x ]]; then
   # Install difftastic
   APPLICATION=difftastic
   echo "##### Installing $APPLICATION #####"
@@ -84,6 +84,13 @@ if [[ "$TMUX"x == "true"x ]]; then
   APPLICATION=tmux
   echo "##### Installing $APPLICATION #####"
   apt-get install -y tmux
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$NET_UTILS"x == "true"x ]]; then
+  APPLICATION="network utilities"
+  echo "##### Installing $APPLICATION #####"
+  apt-get install -y net-tools nmap traceroute iputils-ping tlslookup dnsutils
   echo "##### Installed $APPLICATION #####"
 fi
 
@@ -176,11 +183,12 @@ if [[ "$RUSTUP"x == "true"x ]]; then
 fi
 
 echo "##### Start setting locale #####"
-echo "LANG=${LANG}" > /etc/locale.conf
-locale-gen
+echo "LANG=\"${LANG}\"" > /etc/locale.conf
+locale-gen "$LANG"
 echo "##### Ended setting locale #####"
 echo "##### Copying default sensible configuration for devcontainer cmdline utilities #####"
-su $USER -c "cp -r ../../resources/dot_config .config"
+su $USER -c "ls -lh"
+su $USER -c "cp -r -H --verbose dot_config ~/.config"
 echo "##### copied default sensible configuration for devcontainer cmdline utilities #####"
 
 if [[ "$JQ"x == "false"x ]]; then
@@ -188,4 +196,4 @@ if [[ "$JQ"x == "false"x ]]; then
 fi
 
 apt-get clean
-su $USER -c 'echo "export LANG=en_AU.UTF-8" >> ~/.bashrc'
+su $USER -c "echo \"export LANG=\\\"${LANG}\\\"\" >> ~/.bashrc"
