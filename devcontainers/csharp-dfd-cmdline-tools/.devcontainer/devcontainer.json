@@ -1,0 +1,58 @@
+{
+  "build": { 
+    "dockerfile": "../Dockerfile",
+    "context": "../.."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/docker-from-docker": {
+      "moby": true
+    },
+    "ghcr.io/devcontainers/features/dotnet" : {
+      "version": "latest",
+      "additionalVersions": "9.0,8.0"
+    },
+    "ghcr.io/prom3theu5/aspirational-manifests/aspirate:latest": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    "ghcr.io/devcontainers-extra/features/kind:1": {},
+    "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
+      "dotnet_outdated" : true,
+      "dotnet_ef": true,
+      "dotnet_sqlpackage": true,
+      "just": true,
+      "difftastic" : true,
+      "lang": "en_AU.UTF-8"
+    },
+    "ghcr.io/garrickwelsh/feature/language-servers:latest": {
+      "omnisharp": true
+    },
+    "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
+      "csharp" : true
+    }
+  },
+  "remoteEnv": {
+    "PODMAN_USERNS": "keep-id"
+  },
+  "containerUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "bierner.markdown-mermaid",
+        "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "ms-dotnettools.vscodeintellicode-csharp",
+        "mutantdino.resourcemonitor",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-mssql.mssql",
+        "ms-mssql.sql-database-projects-vscode",
+        "redhat.vscode-yaml",
+        "gruntfuggly.todo-tree",
+        "tomoyukim.vscode-mermaid-editor"
+      ],
+    }
+  }
+}

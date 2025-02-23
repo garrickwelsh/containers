@@ -100,7 +100,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-devcontainers:
-    name: build devcontainer base for rust and csharp
+    name: build devcontainers for rust, terraform, hugo and csharp
     runs-on: ubuntu-latest
     continue-on-error: false
     needs: [ build-devcontainer-features ]
@@ -153,6 +153,16 @@ jobs:
           imageTag: latest,${{ env.TIMESTAMP }}
           subFolder: "devcontainers/csharp-cmdline-tools"
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-cmdline-tools
+          push: always
+
+      - name: Build CSharp (Docker from Docker) with cmdline tools Devcontainer Image
+        uses: devcontainers/ci@v0.3
+        id: build_csharp_dfd_cmdline_tools_container
+        with:
+          imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-dfd-cmdline-tools
+          imageTag: latest,${{ env.TIMESTAMP }}
+          subFolder: "devcontainers/csharp-dfd-cmdline-tools"
+          cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-dfd-cmdline-tools
           push: always
 
       - name: Build Rust with cmdline tools Devcontainer Image
