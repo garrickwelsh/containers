@@ -188,7 +188,7 @@ locale-gen "$LANG"
 echo "##### Ended setting locale #####"
 echo "##### Copying default sensible configuration for devcontainer cmdline utilities #####"
 su $USER -c "ls -lh"
-su $USER -c "cp -r -H --verbose dot_config ~/.config"
+su $USER -c "cp -r -H --verbose dot_config/* ~/.config"
 echo "##### copied default sensible configuration for devcontainer cmdline utilities #####"
 
 if [[ "$JQ"x == "false"x ]]; then
