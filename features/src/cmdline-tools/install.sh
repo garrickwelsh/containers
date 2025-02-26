@@ -27,7 +27,7 @@ if [[ "$DIFFTASTIC"x == "true"x ]]; then
   # Install difftastic
   APPLICATION=difftastic
   echo "##### Installing $APPLICATION #####"
-  DIFFT_VERSION=$(curl -s "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | jq .tag_name)
+  DIFFT_VERSION=$(curl -s "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | jq -r .tag_name)
   pkgname=difft
   curl -Lo difft-x86_64-unknown-linux-gnu.tar.gz https://github.com/Wilfred/difftastic/releases/download/${DIFFT_VERSION}/difft-x86_64-unknown-linux-gnu.tar.gz
   tar zxvf difft-x86_64-unknown-linux-gnu.tar.gz
@@ -107,7 +107,7 @@ fi
 
 if [[ "$LAZYGIT"x == "true"x ]]; then
   APPLICATION=lazygit
-  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION  - $LAZYGIT_VERSION #####"
   curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
   tar zxf lazygit.tar.gz lazygit
@@ -118,7 +118,7 @@ fi
 
 if [[ "$LAZYDOCKER"x == "true"x ]]; then
   APPLICATION=lazydocker
-  LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $LAZYDOCKER_VERSION #####"
   curl -Lo lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz"
   tar zxf lazydocker.tar.gz lazydocker
@@ -130,7 +130,7 @@ fi
 
 if [[ "$OXKER"x == "true"x ]]; then
   APPLICATION=oxker
-  OXKER_VERSION=$(curl -s "https://api.github.com/repos/mrjackwills/oxker/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  OXKER_VERSION=$(curl -s "https://api.github.com/repos/mrjackwills/oxker/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $OXKER_VERSION #####"
   curl -Lo oxker.tar.gz https://github.com/mrjackwills/oxker/releases/download/v${OXKER_VERSION}/oxker_linux_x86_64.tar.gz
   tar zxf oxker.tar.gz oxker
@@ -141,7 +141,7 @@ fi
 
 if [[ "$K9S"x == "true"x ]]; then
   APPLICATION=k9s
-  K9S_VERSION=$(curl -s "https://api.github.com/repos/derailed/k9s/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  K9S_VERSION=$(curl -s "https://api.github.com/repos/derailed/k9s/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $K9S_VERSION #####"
   curl -Lo k9s_linux_amd64.deb https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_amd64.deb
   dpkg --install k9s_linux_amd64.deb 
