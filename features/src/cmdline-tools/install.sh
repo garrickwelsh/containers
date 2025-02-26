@@ -149,6 +149,18 @@ if [[ "$K9S"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+if [[ "$SERIE"x == "true"x ]]; then
+  APPLICATION=serie
+  SERIE_VERSION=$(curl -s "https://api.github.com/repos/lusingander/serie/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  echo "##### Installing $APPLICATION - $SERIE_VERSION #####"
+  curl -Lo serie.tar.gz https://github.com/lusingander/serie/releases/download/v${SERIE_VERSION}/serie-${SERIE_VERSION}-x86_64-unknown-linux-gnu.tar.gz
+  tar zxvf serie.tar.gz
+  rm serie.tar.gz
+  install -Dm755 -t "/usr/local/bin" serie
+  rm serie
+  echo "##### Installed $APPLICATION #####"
+fi
+
 # Install dotnet tooling
 if [[ "$DOTNET_OUTDATED"x == "true"x ]]; then
   APPLICATION=dotnet_outdated

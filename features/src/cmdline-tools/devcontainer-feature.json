@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -99,6 +99,11 @@
             "proposals": [ "stable", "beta", "nightly" ],
             "default": "stable",
             "description": "Install rustup and lldb to develop rust."
+        },
+        "serie":{
+            "type": "boolean",
+            "default": true,
+            "description": "Install serie a terminal git history visualisation tool (better view of branches in history)."
         },
         "lang" : {
             "type": "string",
