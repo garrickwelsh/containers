@@ -1,4 +1,4 @@
-FROM ghcr.io/garrickwelsh/devcontainer-terraform-cmdline-tools:latest
+FROM mcr.microsoft.com/devcontainers/base:noble
 
 ARG USERNAME=vscode
 ARG USER_UID=1000

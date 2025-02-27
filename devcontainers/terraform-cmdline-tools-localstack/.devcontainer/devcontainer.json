@@ -4,11 +4,18 @@
     "context": "../.."
   },
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker": {
+    "ghcr.io/devcontainers/features/docker-from-docker": {
       "moby": true
     },
-    "ghcr.io/devcontainers-extra/features/pipx-package:1": {},
-    "ghcr.io/devcontainers-extra/features/localstack:2": {}
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
+      "serie": true,
+      "localstack": true,
+      "localstack_tf": true,
+      "lang": "en_AU.UTF-8"
+    },
+    "ghcr.io/garrickwelsh/feature/language-servers:latest": { }
   },
   "remoteEnv": {
     "PODMAN_USERNS": "keep-id"

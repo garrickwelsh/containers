@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:noble as intermediate
+FROM mcr.microsoft.com/devcontainers/base:noble
 
 ARG USERNAME=vscode
 ARG USER_UID=1000

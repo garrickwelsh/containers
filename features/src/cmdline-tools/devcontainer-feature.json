@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -104,6 +104,16 @@
             "type": "boolean",
             "default": true,
             "description": "Install serie a terminal git history visualisation tool (better view of branches in history)."
+        },
+        "localstack": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install localstack cmdline utility to create aws tooling."
+        },
+        "localstack_tf": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install localstack cmdline utility to create aws tooling."
         },
         "lang" : {
             "type": "string",

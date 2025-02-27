@@ -8,7 +8,7 @@ apt-get install -y software-properties-common jq
 if [[ "$JUST"x == "true"x ]]; then
   APPLICATION=just
   echo "##### Installing $APPLICATION #####"
-  JUST_VERSION=$(curl -s "https://api.github.com/repos/casey/just/releases/latest" | jq -r .tag_name) 
+  JUST_VERSION=$(curl -Ls "https://api.github.com/repos/casey/just/releases/latest" | jq -r .tag_name) 
   pkgname=just
   curl -Lo just.tar.gz "https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
   tar zxvf just.tar.gz
@@ -27,7 +27,7 @@ if [[ "$DIFFTASTIC"x == "true"x ]]; then
   # Install difftastic
   APPLICATION=difftastic
   echo "##### Installing $APPLICATION #####"
-  DIFFT_VERSION=$(curl -s "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | jq -r .tag_name)
+  DIFFT_VERSION=$(curl -Ls "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | jq -r .tag_name)
   pkgname=difft
   curl -Lo difft-x86_64-unknown-linux-gnu.tar.gz https://github.com/Wilfred/difftastic/releases/download/${DIFFT_VERSION}/difft-x86_64-unknown-linux-gnu.tar.gz
   tar zxvf difft-x86_64-unknown-linux-gnu.tar.gz
@@ -41,7 +41,7 @@ if [[ "$HELIX"x == "true"x ]]; then
   APPLICATION=helix
   echo "##### Installing $APPLICATION #####"
   # Install helix to get the latest version
-  HELIX_VERSION=$(curl -s "https://api.github.com/repos/helix-editor/helix/releases/latest" | jq -r .tag_name)
+  HELIX_VERSION=$(curl -Ls "https://api.github.com/repos/helix-editor/helix/releases/latest" | jq -r .tag_name)
   curl -Lo helix-${HELIX_VERSION}-x86_64-linux.tar.xz https://github.com/helix-editor/helix/releases/download/${HELIX_VERSION}/helix-${HELIX_VERSION}-x86_64-linux.tar.xz
   tar Jxf helix-${HELIX_VERSION}-x86_64-linux.tar.xz
   cd helix-${HELIX_VERSION}-x86_64-linux
@@ -96,9 +96,9 @@ fi
 
 if [[ "$GITUI"x == "true"x ]]; then
   APPLICATION=gitui
-  GITUI_VERSION=$(curl -s "https://api.github.com/repos/extrawurst/gitui/releases/latest" | jq -r .tag_name)
+  GITUI_VERSION=$(curl -Ls "https://api.github.com/repos/gitui-org/gitui/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $GITUI_VERSION #####"
-  curl -Lo gitui-linux-x86_64.tar.gz "https://github.com/extrawurst/gitui/releases/download/${GITUI_VERSION}/gitui-linux-x86_64.tar.gz"
+  curl -Lo gitui-linux-x86_64.tar.gz "https://github.com/gitui-org/gitui/releases/download/v${GITUI_VERSION}/gitui-linux-x86_64.tar.gz"
   tar xvf gitui-linux-x86_64.tar.gz
   rm gitui-linux-x86_64.tar.gz
   install -Dm755 -t "/usr/local/bin" gitui
@@ -107,7 +107,7 @@ fi
 
 if [[ "$LAZYGIT"x == "true"x ]]; then
   APPLICATION=lazygit
-  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  LAZYGIT_VERSION=$(curl -Ls "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION  - $LAZYGIT_VERSION #####"
   curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
   tar zxf lazygit.tar.gz lazygit
@@ -130,7 +130,7 @@ fi
 
 if [[ "$OXKER"x == "true"x ]]; then
   APPLICATION=oxker
-  OXKER_VERSION=$(curl -s "https://api.github.com/repos/mrjackwills/oxker/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  OXKER_VERSION=$(curl -Ls "https://api.github.com/repos/mrjackwills/oxker/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $OXKER_VERSION #####"
   curl -Lo oxker.tar.gz https://github.com/mrjackwills/oxker/releases/download/v${OXKER_VERSION}/oxker_linux_x86_64.tar.gz
   tar zxf oxker.tar.gz oxker
@@ -141,7 +141,7 @@ fi
 
 if [[ "$K9S"x == "true"x ]]; then
   APPLICATION=k9s
-  K9S_VERSION=$(curl -s "https://api.github.com/repos/derailed/k9s/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  K9S_VERSION=$(curl -Ls "https://api.github.com/repos/derailed/k9s/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $K9S_VERSION #####"
   curl -Lo k9s_linux_amd64.deb https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_amd64.deb
   dpkg --install k9s_linux_amd64.deb 
@@ -151,13 +151,33 @@ fi
 
 if [[ "$SERIE"x == "true"x ]]; then
   APPLICATION=serie
-  SERIE_VERSION=$(curl -s "https://api.github.com/repos/lusingander/serie/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  SERIE_VERSION=$(curl -Ls "https://api.github.com/repos/lusingander/serie/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $SERIE_VERSION #####"
   curl -Lo serie.tar.gz https://github.com/lusingander/serie/releases/download/v${SERIE_VERSION}/serie-${SERIE_VERSION}-x86_64-unknown-linux-gnu.tar.gz
   tar zxvf serie.tar.gz
   rm serie.tar.gz
   install -Dm755 -t "/usr/local/bin" serie
   rm serie
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$LOCALSTACK"x == "true"x ]]; then
+  APPLICATION=localstack
+  LOCALSTACK_VERSION=$(curl -Ls "https://api.github.com/repos/localstack/localstack/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  echo "##### Installing $APPLICATION - $LOCALSTACK_VERSION #####"
+  curl -Lo localstack-linux-x86_64.tar.gz "https://github.com/localstack/localstack-cli/releases/download/v${LOCALSTACK_VERSION}/localstack-cli-${LOCALSTACK_VERSION}-linux-amd64-onefile.tar.gz"
+  tar xvf localstack-linux-x86_64.tar.gz
+  rm localstack-linux-x86_64.tar.gz
+  install -Dm755 -t "/usr/local/bin" localstack
+  rm localstack
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$LOCALSTACK_TF"x == "true"x ]]; then
+  APPLICATION=localstack-tf
+  echo "##### Installing $APPLICATION  #####"
+  apt-get install -y pip
+  pip install terraform-local
   echo "##### Installed $APPLICATION #####"
 fi
 
