@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.16",
+    "version": "0.0.19",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -113,7 +113,12 @@
         "localstack_tf": {
             "type": "boolean",
             "default": false,
-            "description": "Install localstack cmdline utility to create aws tooling."
+            "description": "Install localstack terraform cmdline utility to infrastructure in localstack."
+        },
+        "localstack_aws": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install localstack aws cmdline utility to manage infrastructure in localstack."
         },
         "lang" : {
             "type": "string",

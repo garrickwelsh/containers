@@ -97,7 +97,7 @@ fi
 if [[ "$GITUI"x == "true"x ]]; then
   APPLICATION=gitui
   GITUI_VERSION=$(curl -Ls "https://api.github.com/repos/gitui-org/gitui/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
-  echo "##### Installing $APPLICATION - $GITUI_VERSION #####"
+  ecawscli-locallling $APPLICATION - $GITUI_VERSION #####"
   curl -Lo gitui-linux-x86_64.tar.gz "https://github.com/gitui-org/gitui/releases/download/v${GITUI_VERSION}/gitui-linux-x86_64.tar.gz"
   tar xvf gitui-linux-x86_64.tar.gz
   rm gitui-linux-x86_64.tar.gz
@@ -176,8 +176,15 @@ fi
 if [[ "$LOCALSTACK_TF"x == "true"x ]]; then
   APPLICATION=localstack-tf
   echo "##### Installing $APPLICATION  #####"
-  apt-get install -y pip
-  pip install terraform-local
+  apt-get install -y pipx
+  su $USER -c "pipx install terraform-local"
+  echo "##### Installed $APPLICATION #####"
+fi
+if [[ "$LOCALSTACK_AWS"x == "true"x ]]; then
+  APPLICATION=localstack-aws
+  echo "##### Installing $APPLICATION  #####"
+  apt-get install -y pipx
+  su $USER -c "pipx install awscli-local"
   echo "##### Installed $APPLICATION #####"
 fi
 

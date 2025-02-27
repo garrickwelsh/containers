@@ -4,6 +4,7 @@
     "context": "../.."
   },
   "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
     "ghcr.io/devcontainers/features/docker-from-docker": {
       "moby": true
     },
@@ -13,6 +14,7 @@
       "serie": true,
       "localstack": true,
       "localstack_tf": true,
+      "localstack_aws": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": { }
