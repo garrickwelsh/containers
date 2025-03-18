@@ -56,6 +56,23 @@ if [[ "$HELIX"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+if [[ "$BAT"x == "true"x ]]; then
+  APPLICATION=bat
+  echo "##### Installing $APPLICATION #####"
+  BAT_VERSION=$(curl -Ls "https://api.github.com/repos/sharkdp/bat/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  curl -Lo bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz
+  tar zxvf bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz 
+  rm       bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz 
+  BAT_FOLDER="bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu"
+
+  install -Dm644 -T $BAT_FOLDER/autocomplete/bat.bash "/usr/share/bash-completion/completions/bat"
+  install -Dm644 -T $BAT_FOLDER/autocomplete/bat.fish "/usr/share/fish/vendor_completions.d/bat.fish"
+  install -Dm644 -T $BAT_FOLDER/autocomplete/bat.zsh "/usr/share/zsh/site-functions/_bat"
+  install -Dm755 -t "/usr/local/bin" $BAT_FOLDER/bat
+  install -Dm644 -t "/usr/local/man/man1/" $BAT_FOLDER/bat.1
+  rm -rf $BAT_FOLDER
+fi
+
 if [[ "$NEOVIM"x == "true"x ]]; then
   APPLICATION=neovim
   echo "##### Installing $APPLICATION #####"

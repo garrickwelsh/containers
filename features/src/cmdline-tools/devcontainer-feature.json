@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.19",
+    "version": "0.0.21",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -48,6 +48,11 @@
             "type": "boolean",
             "default": true,
             "description": "Install tealdeer a rust implementation of tldr."
+        },
+        "bat" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install bat a cat replacement"
         },
         "gitui" : {
             "type": "boolean",
