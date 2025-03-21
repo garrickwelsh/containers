@@ -73,6 +73,18 @@ if [[ "$BAT"x == "true"x ]]; then
   rm -rf $BAT_FOLDER
 fi
 
+
+if [[ "$YQ"x == "true"x ]]; then
+  APPLICATION=yq
+  echo "##### Installing $APPLICATION #####"
+  YQ_VERSION=$(curl -Ls "https://api.github.com/repos/mikefarah/yq/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  curl -Lo yq https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64
+
+  install -Dm755 -t "/usr/local/bin" yq
+  rm yq
+fi
+
+
 if [[ "$NEOVIM"x == "true"x ]]; then
   APPLICATION=neovim
   echo "##### Installing $APPLICATION #####"
