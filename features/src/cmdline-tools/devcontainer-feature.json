@@ -1,23 +1,28 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.22",
+    "version": "0.0.24",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "Install dotnet outdated"
         },
         "dotnet_ef" : {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "Install dotnet entity framework command line utilities"
         },
         "dotnet_sqlpackage" : {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "Install dotnet sqlpackage"
+        },
+        "dotnet_swagger_cli" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install dotnet swagger utility"
         },
         "just" : {
             "type": "boolean",
@@ -88,6 +93,31 @@
             "type": "boolean",
             "default": true,
             "description": "Install yq a cmdline utility for manipulating yaml, json, xml, csv and tsv."
+        },
+        "skopeo" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install skopeo to command line utility that performs various operations on container images and image repositories."
+        },
+        "syft" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install syft a utility to generate a software bill of materials (SBOM)."
+        },
+        "grype" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install grype to find vulnerabilities from a software bill of materials (SBOM)."
+        },
+        "cosign" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install cosign a command line utility that signs container images."
+        },
+        "oasdiff" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install oasdiff to compare openapi specifications."
         },
         "net_utils" : {
             "type": "boolean",

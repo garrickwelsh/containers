@@ -116,6 +116,55 @@ if [[ "$TMUX"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+if [[ "$SYFT"x == "true"x ]]; then
+  APPLICATION=syft
+  echo "##### Installing $APPLICATION #####"
+  SYFT_VERSION=$(curl -Ls "https://api.github.com/repos/anchore/syft/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
+  echo "https://github.com/anchore/syft/releases/download/v${SYFT_VERSION}/syft_${SYFT_VERSION}_linux_amd64.tar.gz"
+  curl -Lo syft_${SYFT_VERSION}_linux_amd64.tar.gz "https://github.com/anchore/syft/releases/download/v${SYFT_VERSION}/syft_${SYFT_VERSION}_linux_amd64.tar.gz"
+  tar zxvf syft_${SYFT_VERSION}_linux_amd64.tar.gz syft
+  install -Dm755 -t "/usr/local/bin" syft
+  rm syft_${SYFT_VERSION}_linux_amd64.tar.gz
+  rm syft
+  echo "##### Installed $APPLICATION #####"
+fi
+ 
+if [[ "$GRYPE"x == "true"x ]]; then
+  APPLICATION=grype
+  echo "##### Installing $APPLICATION #####"
+  GRYPE_VERSION=$(curl -Ls "https://api.github.com/repos/anchore/grype/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
+  echo "https://github.com/anchore/grype/releases/download/v${GRYPE_VERSION}/grype_${GRYPE_VERSION}_linux_amd64.tar.gz"
+  curl -Lo grype_${GRYPE_VERSION}_linux_amd64.tar.gz "https://github.com/anchore/grype/releases/download/v${GRYPE_VERSION}/grype_${GRYPE_VERSION}_linux_amd64.tar.gz"
+  tar zxvf grype_${GRYPE_VERSION}_linux_amd64.tar.gz grype
+  install -Dm755 -t "/usr/local/bin" grype
+  rm grype_${GRYPE_VERSION}_linux_amd64.tar.gz
+  rm grype
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$COSIGN"x == "true"x ]]; then
+  APPLICATION=cosign
+  echo "##### Installing $APPLICATION #####"
+  COSIGN_VERSION=$(curl -Ls "https://api.github.com/repos/sigstore/cosign/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
+  echo "https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64"
+  curl -Lo cosign "https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64"
+  install -Dm755 -t "/usr/local/bin" cosign
+  echo "##### Installing $APPLICATION #####"
+fi
+
+if [[ "$OASDIFF"x == "true"x ]]; then
+  APPLICATION=oasdiff
+  echo "##### Installing $APPLICATION #####"
+  OASDIFF_VERSION=$(curl -Ls "https://api.github.com/repos/Tufin/oasdiff/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
+  echo https://github.com/Tufin/oasdiff/releases/download/v${OASDIFF_VERSION}/oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz
+  curl -Lo oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz https://github.com/Tufin/oasdiff/releases/download/v${OASDIFF_VERSION}/oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz
+  tar zxvf oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz oasdiff
+  install -Dm755 -t "/usr/local/bin" oasdiff
+  rm oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz
+  rm oasdiff
+  echo "##### Installing $APPLICATION #####"
+fi
+
 if [[ "$NET_UTILS"x == "true"x ]]; then
   APPLICATION="network utilities"
   echo "##### Installing $APPLICATION #####"
@@ -237,6 +286,21 @@ if [[ "$DOTNET_SQLPACKAGE"x == "true"x ]]; then
   APPLICATION=dotnet_sqlpackage
   echo "##### Installing $APPLICATION #####"
   su $USER -c "dotnet tool install --global Microsoft.SqlPackage"
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$DOTNET_SWAGGER_CLI"x == "true"x ]]; then
+  # Install support for Sql projects
+  APPLICATION=dotnet_swagger_cli
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "dotnet tool install --global Swashbuckle.AspNetCore.Cli"
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$SKOPEO"x == "true"x ]]; then
+  APPLICATION=skopeo
+  echo "##### Installing $APPLICATION #####"
+  apt-get install -y skopeo
   echo "##### Installed $APPLICATION #####"
 fi
 
