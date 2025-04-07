@@ -45,6 +45,7 @@
         "mhutchie.git-graph",
         "ms-azuretools.vscode-docker",
         "ms-dotnettools.vscodeintellicode-csharp",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
         "mutantdino.resourcemonitor",
         "ms-dotnettools.csdevkit",
         "ms-dotnettools.csharp",
