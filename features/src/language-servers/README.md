@@ -21,6 +21,10 @@ Install language servers to support editors.
 | docker_compose | Install docker compose language server | boolean | true |
 | marksman | Install marksman language server for the markdown language | boolean | true |
 | markdown_oxide | Install markdown oxide language server for the markdown language | boolean | true |
+| html | Install html language server | boolean | true |
+| css | Install css language server | boolean | true |
+| typescript | Install typescript / javascript language server | boolean | true |
+| vue | Install vue language server | boolean | false |
 | terraform | Install terraform-ls | boolean | true |
 | omnisharp | Install omnisharp language server | boolean | false |
 | rust | Install rust analyzer (requires rustup) | boolean | false |

@@ -297,6 +297,16 @@ if [[ "$DOTNET_SWAGGER_CLI"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+
+if [[ "$DOTNET_AZURE_FUNCTIONS"x == "true"x ]]; then
+  # Install support for azure functions
+  APPLICATION="Azure Functions Support"
+  echo "##### Installing $APPLICATION #####"
+  apt-get install -y azure-functions-core-tools-4
+  curl -fsSL https://aka.ms/install-azd.sh | bash
+  echo "##### Installed $APPLICATION #####"
+fi
+
 if [[ "$SKOPEO"x == "true"x ]]; then
   APPLICATION=skopeo
   echo "##### Installing $APPLICATION #####"
