@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.25",
+    "version": "0.0.26",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -28,6 +28,16 @@
             "type": "boolean",
             "default": false,
             "description": "Install azure function tools azd and azure-function-core-tools-4"
+        },
+        "manpages": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable man pages for ubuntu base image"
+        },
+        "powershell": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install powershell core"
         },
         "just" : {
             "type": "boolean",

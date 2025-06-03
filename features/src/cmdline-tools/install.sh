@@ -94,6 +94,35 @@ if [[ "$NEOVIM"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+if [[ "$MANPAGES"x == "true"x ]]; then
+  echo "Enable manpages"
+  unminimize
+fi
+
+if [[ "$POWERSHELL"x == "true" ]]; then
+  APPLICATION=powershell
+  echo "##### Installing $APPLICATION #####"
+  # Get the version of Ubuntu
+  source /etc/os-release
+
+  # Download the Microsoft repository keys
+  curl -o packages-microsoft-prod.deb -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+
+  # Register the Microsoft repository keys
+  dpkg -i packages-microsoft-prod.deb
+
+  # Delete the Microsoft repository keys file
+  rm packages-microsoft-prod.deb
+
+  # Update the list of packages after we added packages.microsoft.com
+  sudo apt-get update
+
+  ###################################
+  # Install PowerShell
+  sudo apt-get install -y powershell
+  echo "##### Installed $APPLICATION #####"
+fi
+
 if [[ "$TEALDEER"x == "true"x ]]; then
   APPLICATION=tealdeer
   echo "##### Installing $APPLICATION #####"
