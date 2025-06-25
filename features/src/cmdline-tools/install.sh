@@ -99,7 +99,7 @@ if [[ "$MANPAGES"x == "true"x ]]; then
   unminimize
 fi
 
-if [[ "$POWERSHELL"x == "true" ]]; then
+if [[ "$POWERSHELL"x == "true"x ]]; then
   APPLICATION=powershell
   echo "##### Installing $APPLICATION #####"
   # Get the version of Ubuntu
