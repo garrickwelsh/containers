@@ -19,6 +19,7 @@
       "dotnet_outdated" : true,
       "dotnet_ef": true,
       "dotnet_sqlpackage": true,
+      "dotnet_swagger_cli": true,
       "just": true,
       "difftastic" : true,
       "manpages": true,
