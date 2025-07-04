@@ -8,6 +8,7 @@
     "ghcr.io/devcontainers/features/azure-cli:1": {},
     "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
       "dotnet_azure_functions": true,
+      "jq": true,
       "dotnet_outdated": false,
       "dotnet_ef": false,
       "dotnet_sqlpackage": false,
@@ -24,7 +25,6 @@
       "lazydocker": false,
       "oxker": false,
       "k9s": false,
-      "jq": false,
       "yq": false,
       "skopeo": false,
       "syft": false,
