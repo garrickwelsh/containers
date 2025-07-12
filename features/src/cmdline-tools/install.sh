@@ -84,6 +84,17 @@ if [[ "$YQ"x == "true"x ]]; then
   rm yq
 fi
 
+if [[ "$JJ"x == "true"x ]]; then
+  APPLICATION=jj
+  echo "##### Installing $APPLICATION #####"
+  JJ_VERSION=$(curl -Ls "https://api.github.com/repos/mikefarah/yq/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  curl -Lo yq https://github.com/mikefarah/yq/releases/download/${JJ_VERSION}/yq_linux_amd64
+  curl -Lo jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/jj-vcs/jj/releases/download/v${JJ_VERSION}/jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
+
+  tar zxvf jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz ./jj
+  install -Dm755 -t "/usr/local/bin" jj
+  rm jj jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
+fi
 
 if [[ "$NEOVIM"x == "true"x ]]; then
   APPLICATION=neovim

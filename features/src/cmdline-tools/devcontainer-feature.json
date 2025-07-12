@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.27",
+    "version": "0.0.28",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -78,6 +78,11 @@
             "type": "boolean",
             "default": true,
             "description": "Install gitui a terminal ui for git."
+        },
+        "jj" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install jj a source control system that works on top of a git backend"
         },
         "lazygit" : {
             "type": "boolean",
