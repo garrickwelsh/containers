@@ -1,7 +1,7 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {
@@ -39,6 +39,11 @@
             "type": "boolean",
             "default": true,
             "description": "Install markdown oxide language server for the markdown language"
+        },
+        "codebook": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install codebook language server for spell checking"
         },
         "html" : {
             "type": "boolean",

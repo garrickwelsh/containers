@@ -21,6 +21,7 @@
       "dotnet_sqlpackage": true,
       "dotnet_swagger_cli": true,
       "just": true,
+      "jj": true,
       "difftastic" : true,
       "manpages": true,
       "powershell": true,

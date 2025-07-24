@@ -77,6 +77,15 @@ if [[ "$MARKDOWN_OXIDE"x == "true"x ]]; then
   rm markdown-oxide
 fi
 
+if [[ "$CODEBOOK"x == "true"x ]]; then
+  CODEBOOK_VERSION=$(curl -s "https://api.github.com/repos/blopker/codebook/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
+  curl -Lo codebook-lsp-x86_64-unknown-linux-musl.tar.gz https://github.com/blopker/codebook/releases/download/v$CODEBOOK_VERSION/codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
+  tar zxvf codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
+  rm codebook-lsp-x86_64-unknown-linux-musl.tar.gz
+  install -Dm755 -t "/usr/local/bin" codebook-lsp
+  rm codebook-lsp
+fi
+
 if [[ "$JQ"x == ""x ]]; then
   dpkg --remove jq
 fi
