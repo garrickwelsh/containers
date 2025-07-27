@@ -95,6 +95,27 @@ if [[ "$JJ"x == "true"x ]]; then
   rm jj jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
 fi
 
+if [[ "$JJUI"x == "true"x ]]; then
+  APPLICATION=jjui
+  echo "##### Installing $APPLICATION #####"
+  JJUI_VERSION=$(curl https://api.github.com/repos/idursun/jjui/releases/latest | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  curl -Lo jjui-${JJUI_VERSION}-linux-amd64.zip https://github.com/idursun/jjui/releases/download/v${JJUI_VERSION}/jjui-${JJUI_VERSION}-linux-amd64.zip
+  unzip jjui-${JJUI_VERSION}-linux-amd64.zip
+  mv jjui-${JJUI_VERSION}-linux-amd64 jjui
+  install -Dm755 -t "/usr/bin" jjui
+  rm jjui-${JJUI_VERSION}-linux-amd64.zip jjui
+fi
+
+if [[ "$LAZYJJ"x == "true"x ]]; then
+  APPLICATION=lazyjj
+  echo "##### Installing $APPLICATION #####"
+  LAZYJJ_VERSION=$(curl https://api.github.com/repos/Cretezy/lazyjj/releases/latest | jq -r .tag_name)
+  curl -Lo lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/Cretezy/lazyjj/releases/download/${LAZYJJ_VERSION}/lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
+  tar zxvf lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
+  install -Dm755 -t "/usr/bin" lazyjj
+  rm lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz lazyjj
+fi
+
 if [[ "$NEOVIM"x == "true"x ]]; then
   APPLICATION=neovim
   echo "##### Installing $APPLICATION #####"

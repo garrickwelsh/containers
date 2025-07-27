@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.29",
+    "version": "0.0.31",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -83,6 +83,16 @@
             "type": "boolean",
             "default": false,
             "description": "Install jj a source control system that works on top of a git backend"
+        },
+        "jjui" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install jjui a tui for the jj source control system that works on top of a git backend"
+        },
+        "lazyjj" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install lazyjj a tui for the jj source control system that works on top of a git backend"
         },
         "lazygit" : {
             "type": "boolean",
