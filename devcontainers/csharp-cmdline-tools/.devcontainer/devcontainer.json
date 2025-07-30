@@ -22,6 +22,8 @@
       "dotnet_swagger_cli": true,
       "just": true,
       "jj": true,
+      "jjui": true,
+      "lazyjj": true,
       "difftastic" : true,
       "manpages": true,
       "powershell": true,

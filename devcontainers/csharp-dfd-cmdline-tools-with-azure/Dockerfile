@@ -1,4 +1,4 @@
-FROM ghcr.io/garrickwelsh/devcontainer-csharp-cmdline-tools as devcontainer
+FROM ghcr.io/garrickwelsh/devcontainer-csharp-dfd-cmdline-tools as devcontainer
 
 ARG USERNAME=vscode
 ARG USER_UID=1000

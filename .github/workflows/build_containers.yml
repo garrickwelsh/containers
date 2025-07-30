@@ -277,6 +277,15 @@ jobs:
           # cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-cmdline-tools-with-azure
           push: always
 
+      - name: Build CSharp with Azure Support
+        uses: devcontainers/ci@v0.3
+        id: build_csharp_dfd_cmdline_tools_with_azure
+        with:
+          imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-dfd-cmdline-tools-with-azure
+          imageTag: latest,${{ env.TIMESTAMP }}
+          subFolder: "devcontainers/csharp-dfd-cmdline-tools-with-azure"
+          # cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-csharp-cmdline-tools-with-azure
+          push: always
   check:
     name: Check all builds successful
     if: ${{ !cancelled() }}
