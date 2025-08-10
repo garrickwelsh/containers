@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.32",
+    "version": "0.0.34",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -169,6 +169,11 @@
             "proposals": [ "stable", "beta", "nightly" ],
             "default": "stable",
             "description": "Install rustup and lldb to develop rust."
+        },
+        "watchman": {
+            "type": "boolean",
+            "default": true,
+            "description": "watchman a file watching service (can be used with jj)"
         },
         "xh": {
             "type": "boolean",

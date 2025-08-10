@@ -9,8 +9,10 @@ if [[ "$JUST"x == "true"x ]]; then
   APPLICATION=just
   echo "##### Installing $APPLICATION #####"
   JUST_VERSION=$(curl -Ls "https://api.github.com/repos/casey/just/releases/latest" | jq -r .tag_name) 
+  echo "$APPLICATION version: $JUST_VERSION"
   pkgname=just
   curl -Lo just.tar.gz "https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+  file just.tar.gz
   tar zxvf just.tar.gz
   rm just.tar.gz
   install -Dm755 -t "${pkgdir}/usr/local/bin/" "${pkgname}"
@@ -124,13 +126,17 @@ if [[ "$XH"x == "true"x ]]; then
   tar zxvf xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz
   pkgname=xh
   pkgdir=xh-${XH_VERSION}-x86_64-unknown-linux-musl
-  install -Dm755 -t "${pkgdir}/usr/local/bin/" "${pkgname}"
-  install -Dm644 -t "${pkgdir}/usr/local/share/man/man1/" "${pkgname}.1"
-  install -Dm644 -t "${pkgdir}/usr/local/share/licenses/${pkgname}/" "LICENSE"
-  install -Dm644 -t "${pkgdir}/usr/local/share/bash-completion/completions/" "completions/${pkgname}.bash"
-  install -Dm644 -t "${pkgdir}/usr/local/share/elvish/lib/" "completions/${pkgname}.elvish"
-  install -Dm644 -t "${pkgdir}/usr/local/share/fish/vendor_completions.d/" "completions/${pkgname}.fish"
+  install -Dm755 -t "/usr/local/bin/" "${pkgdir}/${pkgname}"
+  install -Dm644 -t "/usr/local/share/man/man1/" "${pkgdir}/doc/${pkgname}.1"
+  install -Dm644 -t "/usr/local/share/licenses/${pkgname}/" "${pkgdir}/LICENSE"
+  install -Dm644 -t "/usr/local/share/bash-completion/completions/" "${pkgdir}/completions/${pkgname}.bash"
+  install -Dm644 -t "/usr/local/share/elvish/lib/" "${pkgdir}/completions/${pkgname}.elvish"
+  install -Dm644 -t "/usr/local/share/fish/vendor_completions.d/" "${pkgdir}/completions/${pkgname}.fish"
   rm -r xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz $pkgdir
+fi
+
+if [[ "$WATCHMAN"x == "true"x ]]; then
+  apt-get install -y watchman
 fi
 
 if [[ "$NEOVIM"x == "true"x ]]; then
