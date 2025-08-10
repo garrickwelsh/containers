@@ -116,6 +116,23 @@ if [[ "$LAZYJJ"x == "true"x ]]; then
   rm lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz lazyjj
 fi
 
+if [[ "$XH"x == "true"x ]]; then
+  APPLICATION=xh
+  echo "##### Installing $APPLICATION #####"
+  XH_VERSION=$(curl https://api.github.com/repos/ducaale/xh/releases/latest | jq -r .tag_name)
+  curl -Lo xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/ducaale/xh/releases/download/${XH_VERSION}/xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz
+  tar zxvf xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz
+  pkgname=xh
+  pkgdir=xh-${XH_VERSION}-x86_64-unknown-linux-musl
+  install -Dm755 -t "${pkgdir}/usr/local/bin/" "${pkgname}"
+  install -Dm644 -t "${pkgdir}/usr/local/share/man/man1/" "${pkgname}.1"
+  install -Dm644 -t "${pkgdir}/usr/local/share/licenses/${pkgname}/" "LICENSE"
+  install -Dm644 -t "${pkgdir}/usr/local/share/bash-completion/completions/" "completions/${pkgname}.bash"
+  install -Dm644 -t "${pkgdir}/usr/local/share/elvish/lib/" "completions/${pkgname}.elvish"
+  install -Dm644 -t "${pkgdir}/usr/local/share/fish/vendor_completions.d/" "completions/${pkgname}.fish"
+  rm -r xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz $pkgdir
+fi
+
 if [[ "$NEOVIM"x == "true"x ]]; then
   APPLICATION=neovim
   echo "##### Installing $APPLICATION #####"
@@ -284,18 +301,6 @@ if [[ "$K9S"x == "true"x ]]; then
   curl -Lo k9s_linux_amd64.deb https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_amd64.deb
   dpkg --install k9s_linux_amd64.deb 
   rm k9s_linux_amd64.deb 
-  echo "##### Installed $APPLICATION #####"
-fi
-
-if [[ "$SERIE"x == "true"x ]]; then
-  APPLICATION=serie
-  SERIE_VERSION=$(curl -Ls "https://api.github.com/repos/lusingander/serie/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
-  echo "##### Installing $APPLICATION - $SERIE_VERSION #####"
-  curl -Lo serie.tar.gz https://github.com/lusingander/serie/releases/download/v${SERIE_VERSION}/serie-${SERIE_VERSION}-x86_64-unknown-linux-gnu.tar.gz
-  tar zxvf serie.tar.gz
-  rm serie.tar.gz
-  install -Dm755 -t "/usr/local/bin" serie
-  rm serie
   echo "##### Installed $APPLICATION #####"
 fi
 
