@@ -139,6 +139,17 @@ if [[ "$WATCHMAN"x == "true"x ]]; then
   apt-get install -y watchman
 fi
 
+
+if [[ "$STARSHIP"x == "true"x ]]; then
+  APPLICATION=starship
+  echo "##### Installing $APPLICATION #####"
+  STARSHIP_VERSION=$(curl https://api.github.com/repos/starship/starship/releases/latest | jq -r .tag_name)
+  curl -Lo starship-x86_64-unknown-linux-musl.tar.gz https://github.com/starship/starship/releases/download/${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz
+  tar zxvf starship-x86_64-unknown-linux-musl.tar.gz 
+  install -Dm755 -t "/usr/local/bin/" starship
+  rm starship-x86_64-unknown-linux-musl.tar.gz starship
+fi
+
 if [[ "$NEOVIM"x == "true"x ]]; then
   APPLICATION=neovim
   echo "##### Installing $APPLICATION #####"
