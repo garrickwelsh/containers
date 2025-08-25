@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.35",
+    "version": "0.0.36",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {

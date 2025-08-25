@@ -161,7 +161,7 @@ fi
 
 if [[ "$MANPAGES"x == "true"x ]]; then
   echo "Enable manpages"
-  unminimize
+  yes | unminimize
 fi
 
 if [[ "$POWERSHELL"x == "true"x ]]; then
