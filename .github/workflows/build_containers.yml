@@ -185,15 +185,15 @@ jobs:
           cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-hugo-cmdline-tools
           push: always
 
-      - name: Build Terraform with cmdline tools including Azure and AWS cli
-        uses: devcontainers/ci@v0.3
-        id: build_terraform_cmdline_tools_container
-        with:
-          imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-terraform-cmdline-tools
-          imageTag: latest,${{ env.TIMESTAMP }}
-          subFolder: "devcontainers/terraform-cmdline-tools"
-          # cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-terraform-cmdline-tools
-          push: always
+      # - name: Build Terraform with cmdline tools including Azure and AWS cli
+      #   uses: devcontainers/ci@v0.3
+      #   id: build_terraform_cmdline_tools_container
+      #   with:
+      #     imageName: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-terraform-cmdline-tools
+      #     imageTag: latest,${{ env.TIMESTAMP }}
+      #     subFolder: "devcontainers/terraform-cmdline-tools"
+      #     # cacheFrom: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}-terraform-cmdline-tools
+      #     push: always
 
   build-devcontainers-with-cmdline-tools-sshd:
     name: Build csharp with codespaces support
