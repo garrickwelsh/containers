@@ -27,6 +27,8 @@
       "difftastic" : true,
       "manpages": true,
       "powershell": true,
+      "nushell": true,
+      "carapace": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
