@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.36",
+    "version": "0.0.37",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -38,6 +38,16 @@
             "type": "boolean",
             "default": false,
             "description": "Install powershell core"
+        },
+        "nushell": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install nushell"
+        },
+        "carapace": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install carapace shell completion utility"
         },
         "just" : {
             "type": "boolean",
@@ -93,11 +103,6 @@
             "type": "boolean",
             "default": false,
             "description": "Install jjui a tui for the jj source control system that works on top of a git backend"
-        },
-        "lazyjj" : {
-            "type": "boolean",
-            "default": false,
-            "description": "Install lazyjj a tui for the jj source control system that works on top of a git backend"
         },
         "lazygit" : {
             "type": "boolean",

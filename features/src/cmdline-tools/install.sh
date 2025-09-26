@@ -108,16 +108,6 @@ if [[ "$JJUI"x == "true"x ]]; then
   rm jjui-${JJUI_VERSION}-linux-amd64.zip jjui
 fi
 
-if [[ "$LAZYJJ"x == "true"x ]]; then
-  APPLICATION=lazyjj
-  echo "##### Installing $APPLICATION #####"
-  LAZYJJ_VERSION=$(curl https://api.github.com/repos/Cretezy/lazyjj/releases/latest | jq -r .tag_name)
-  curl -Lo lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/Cretezy/lazyjj/releases/download/${LAZYJJ_VERSION}/lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
-  tar zxvf lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
-  install -Dm755 -t "/usr/bin" lazyjj
-  rm lazyjj-${LAZYJJ_VERSION}-x86_64-unknown-linux-musl.tar.gz lazyjj
-fi
-
 if [[ "$XH"x == "true"x ]]; then
   APPLICATION=xh
   echo "##### Installing $APPLICATION #####"
@@ -185,6 +175,31 @@ if [[ "$POWERSHELL"x == "true"x ]]; then
   ###################################
   # Install PowerShell
   sudo apt-get install -y powershell
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$NUSHELL"x == "true"x ]]; then
+  APPLICATION=nushell
+  echo "##### Installing $APPLICATION #####"
+  NUSHELL_VERSION=$(curl -Ls "https://api.github.com/repos/nushell/nushell/releases/latest" | jq -r .tag_name)
+  echo "https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+  curl -Lo nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz "https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+  tar zxvf nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu/nu
+  mv nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu/nu .
+  install -Dm755 -t "/usr/local/bin" nu
+  rm -r nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu nu
+  echo "##### Installed $APPLICATION #####"
+fi
+
+if [[ "$CARAPACE"x == "true"x ]]; then
+  APPLICATION=carapace
+  echo "##### Installing $APPLICATION #####"
+  CARAPACE_VERSION=$(curl -Ls "https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest" | jq -r .tag_name| grep -Po 'v\K[^"]*')
+  echo "https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+  curl -Lo carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz "https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+  tar zxvf carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz carapace
+  install -Dm755 -t "/usr/local/bin" carapace
+  rm -r carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz carapace
   echo "##### Installed $APPLICATION #####"
 fi
 
