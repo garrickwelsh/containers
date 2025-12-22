@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.37",
+    "version": "0.0.40",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -179,6 +179,11 @@
             "proposals": [ "stable", "beta", "nightly" ],
             "default": "stable",
             "description": "Install rustup and lldb to develop rust."
+        },
+        "bun" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install bun to develop javascript / typescript projects."
         },
         "watchman": {
             "type": "boolean",

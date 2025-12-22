@@ -112,6 +112,18 @@ jobs:
       fail-fast: false
 
     steps:
+      - name: Maximize build disk space
+        shell: bash
+        run: |
+          sudo apt-get remove -y '^aspnetcore-.*'
+          sudo apt-get remove -y '^dotnet-.*'
+          sudo apt-get remove -y '^llvm-.*'
+          sudo apt-get remove -y '^php-.*'
+          sudo apt-get remove -y '^mysql-.*'
+          sudo apt-get remove -y google-chrome-stable microsoft-edge-stable
+          sudo apt-get remove -y google-cloud-cli --fix-missing
+          sudo apt-get remove -y powershell --fix-missing
+
       - name: set TIMESTAMP
         run: echo "TIMESTAMP=$(date +'%Y%m%d.%H.%M.%S')" >> $GITHUB_ENV
 

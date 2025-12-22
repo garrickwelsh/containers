@@ -129,6 +129,24 @@ if [[ "$WATCHMAN"x == "true"x ]]; then
   apt-get install -y watchman
 fi
 
+if [[ "$BUN"x == "true"x ]]; then
+  APPLICATION=BUN
+  echo "##### Installing $APPLICATION #####"
+
+  pkgname=bun
+  pkgdir=bun-linux-x64-baseline
+  BUN_ZIP=bun-linux-x64-baseline.zip
+
+  BUN_VERSION=$(curl https://api.github.com/repos/oven-sh/bun/releases/latest | jq -r .tag_name)
+
+  curl -Lo $BUN_ZIP https://github.com/oven-sh/bun/releases/download/${BUN_VERSION}/${BUN_ZIP}
+  unzip $BUN_ZIP
+  install -Dm755 -t "/usr/local/bin/" "${pkgdir}/${pkgname}"
+  rm -r $pkgdir
+  rm $BUN_ZIP
+
+  # su $USER -c "curl -fsSL https://bun.com/install | bash"
+fi
 
 if [[ "$STARSHIP"x == "true"x ]]; then
   APPLICATION=starship
