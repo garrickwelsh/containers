@@ -19,6 +19,7 @@
       "just": true,
       "jj": true,
       "jjui": true,
+      "jj_desc": true,
       "difftastic" : true,
       "manpages": true,
       "powershell": true,

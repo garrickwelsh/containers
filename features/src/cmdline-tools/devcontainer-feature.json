@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.40",
+    "version": "0.0.41",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -103,6 +103,11 @@
             "type": "boolean",
             "default": false,
             "description": "Install jjui a tui for the jj source control system that works on top of a git backend"
+        },
+        "jj_desc" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install jj-desc a tool that generates commit messages using LLMs"
         },
         "lazygit" : {
             "type": "boolean",

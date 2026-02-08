@@ -108,6 +108,16 @@ if [[ "$JJUI"x == "true"x ]]; then
   rm jjui-${JJUI_VERSION}-linux-amd64.zip jjui
 fi
 
+if [[ "$JJ_DESC"x == "true"x ]]; then
+  APPLICATION=jj-desc
+  echo "##### Installing $APPLICATION #####"
+  JJ_DESC_VERSION=$(curl -Ls "https://api.github.com/repos/tumf/jj-desc/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  curl -Lo jj-desc-x86_64-unknown-linux-gnu.tar.xz https://github.com/tumf/jj-desc/releases/download/v${JJ_DESC_VERSION}/jj-desc-x86_64-unknown-linux-gnu.tar.xz
+  tar Jxvf jj-desc-x86_64-unknown-linux-gnu.tar.xz jj-desc-x86_64-unknown-linux-gnu/jj-desc
+  install -Dm755 -t "/usr/local/bin" jj-desc-x86_64-unknown-linux-gnu/jj-desc
+  rm -r jj-desc-x86_64-unknown-linux-gnu.tar.xz jj-desc-x86_64-unknown-linux-gnu 
+fi
+
 if [[ "$XH"x == "true"x ]]; then
   APPLICATION=xh
   echo "##### Installing $APPLICATION #####"
