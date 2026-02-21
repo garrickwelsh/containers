@@ -11,7 +11,7 @@ if [[ "$JUST"x == "true"x ]]; then
   JUST_VERSION=$(curl -Ls "https://api.github.com/repos/casey/just/releases/latest" | jq -r .tag_name) 
   echo "$APPLICATION version: $JUST_VERSION"
   pkgname=just
-  curl -Lo just.tar.gz "https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+  curl -sLo just.tar.gz "https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
   file just.tar.gz
   tar zxvf just.tar.gz
   rm just.tar.gz
@@ -31,7 +31,7 @@ if [[ "$DIFFTASTIC"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   DIFFT_VERSION=$(curl -Ls "https://api.github.com/repos/Wilfred/difftastic/releases/latest" | jq -r .tag_name)
   pkgname=difft
-  curl -Lo difft-x86_64-unknown-linux-gnu.tar.gz https://github.com/Wilfred/difftastic/releases/download/${DIFFT_VERSION}/difft-x86_64-unknown-linux-gnu.tar.gz
+  curl -sLo difft-x86_64-unknown-linux-gnu.tar.gz https://github.com/Wilfred/difftastic/releases/download/${DIFFT_VERSION}/difft-x86_64-unknown-linux-gnu.tar.gz
   tar zxvf difft-x86_64-unknown-linux-gnu.tar.gz
   rm difft-x86_64-unknown-linux-gnu.tar.gz
   install -Dm755 -t "/usr/local/bin" "${pkgname}"
@@ -44,7 +44,7 @@ if [[ "$HELIX"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   # Install helix to get the latest version
   HELIX_VERSION=$(curl -Ls "https://api.github.com/repos/helix-editor/helix/releases/latest" | jq -r .tag_name)
-  curl -Lo helix-${HELIX_VERSION}-x86_64-linux.tar.xz https://github.com/helix-editor/helix/releases/download/${HELIX_VERSION}/helix-${HELIX_VERSION}-x86_64-linux.tar.xz
+  curl -sLo helix-${HELIX_VERSION}-x86_64-linux.tar.xz https://github.com/helix-editor/helix/releases/download/${HELIX_VERSION}/helix-${HELIX_VERSION}-x86_64-linux.tar.xz
   tar Jxf helix-${HELIX_VERSION}-x86_64-linux.tar.xz
   cd helix-${HELIX_VERSION}-x86_64-linux
   install -Dm755 -t "/usr/local/bin" hx
@@ -62,7 +62,7 @@ if [[ "$BAT"x == "true"x ]]; then
   APPLICATION=bat
   echo "##### Installing $APPLICATION #####"
   BAT_VERSION=$(curl -Ls "https://api.github.com/repos/sharkdp/bat/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
-  curl -Lo bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz
+  curl -sLo bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz
   tar zxvf bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz 
   rm       bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz 
   BAT_FOLDER="bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu"
@@ -80,7 +80,7 @@ if [[ "$YQ"x == "true"x ]]; then
   APPLICATION=yq
   echo "##### Installing $APPLICATION #####"
   YQ_VERSION=$(curl -Ls "https://api.github.com/repos/mikefarah/yq/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
-  curl -Lo yq https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64
+  curl -sLo yq https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64
 
   install -Dm755 -t "/usr/local/bin" yq
   rm yq
@@ -90,7 +90,7 @@ if [[ "$JJ"x == "true"x ]]; then
   APPLICATION=jj
   echo "##### Installing $APPLICATION #####"
   JJ_VERSION=$(curl -Ls "https://api.github.com/repos/jj-vcs/jj/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
-  curl -Lo jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/jj-vcs/jj/releases/download/v${JJ_VERSION}/jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
+  curl -sLo jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/jj-vcs/jj/releases/download/v${JJ_VERSION}/jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz
 
   tar zxvf jj-v${JJ_VERSION}-x86_64-unknown-linux-musl.tar.gz ./jj
   install -Dm755 -t "/usr/local/bin" jj
@@ -100,8 +100,8 @@ fi
 if [[ "$JJUI"x == "true"x ]]; then
   APPLICATION=jjui
   echo "##### Installing $APPLICATION #####"
-  JJUI_VERSION=$(curl https://api.github.com/repos/idursun/jjui/releases/latest | jq -r .tag_name | grep -Po 'v\K[^"]*')
-  curl -Lo jjui-${JJUI_VERSION}-linux-amd64.zip https://github.com/idursun/jjui/releases/download/v${JJUI_VERSION}/jjui-${JJUI_VERSION}-linux-amd64.zip
+  JJUI_VERSION=$(curl -s https://api.github.com/repos/idursun/jjui/releases/latest | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  curl -sLo jjui-${JJUI_VERSION}-linux-amd64.zip https://github.com/idursun/jjui/releases/download/v${JJUI_VERSION}/jjui-${JJUI_VERSION}-linux-amd64.zip
   unzip jjui-${JJUI_VERSION}-linux-amd64.zip
   mv jjui-${JJUI_VERSION}-linux-amd64 jjui
   install -Dm755 -t "/usr/bin" jjui
@@ -112,7 +112,7 @@ if [[ "$JJ_DESC"x == "true"x ]]; then
   APPLICATION=jj-desc
   echo "##### Installing $APPLICATION #####"
   JJ_DESC_VERSION=$(curl -Ls "https://api.github.com/repos/tumf/jj-desc/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
-  curl -Lo jj-desc-x86_64-unknown-linux-gnu.tar.xz https://github.com/tumf/jj-desc/releases/download/v${JJ_DESC_VERSION}/jj-desc-x86_64-unknown-linux-gnu.tar.xz
+  curl -sLo jj-desc-x86_64-unknown-linux-gnu.tar.xz https://github.com/tumf/jj-desc/releases/download/v${JJ_DESC_VERSION}/jj-desc-x86_64-unknown-linux-gnu.tar.xz
   tar Jxvf jj-desc-x86_64-unknown-linux-gnu.tar.xz jj-desc-x86_64-unknown-linux-gnu/jj-desc
   install -Dm755 -t "/usr/local/bin" jj-desc-x86_64-unknown-linux-gnu/jj-desc
   rm -r jj-desc-x86_64-unknown-linux-gnu.tar.xz jj-desc-x86_64-unknown-linux-gnu 
@@ -121,8 +121,8 @@ fi
 if [[ "$XH"x == "true"x ]]; then
   APPLICATION=xh
   echo "##### Installing $APPLICATION #####"
-  XH_VERSION=$(curl https://api.github.com/repos/ducaale/xh/releases/latest | jq -r .tag_name)
-  curl -Lo xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/ducaale/xh/releases/download/${XH_VERSION}/xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz
+  XH_VERSION=$(curl -s https://api.github.com/repos/ducaale/xh/releases/latest | jq -r .tag_name)
+  curl -sLo xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz https://github.com/ducaale/xh/releases/download/${XH_VERSION}/xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz
   tar zxvf xh-${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz
   pkgname=xh
   pkgdir=xh-${XH_VERSION}-x86_64-unknown-linux-musl
@@ -147,9 +147,9 @@ if [[ "$BUN"x == "true"x ]]; then
   pkgdir=bun-linux-x64-baseline
   BUN_ZIP=bun-linux-x64-baseline.zip
 
-  BUN_VERSION=$(curl https://api.github.com/repos/oven-sh/bun/releases/latest | jq -r .tag_name)
+  BUN_VERSION=$(curl -s https://api.github.com/repos/oven-sh/bun/releases/latest | jq -r .tag_name)
 
-  curl -Lo $BUN_ZIP https://github.com/oven-sh/bun/releases/download/${BUN_VERSION}/${BUN_ZIP}
+  curl -sLo $BUN_ZIP https://github.com/oven-sh/bun/releases/download/${BUN_VERSION}/${BUN_ZIP}
   unzip $BUN_ZIP
   install -Dm755 -t "/usr/local/bin/" "${pkgdir}/${pkgname}"
   rm -r $pkgdir
@@ -161,8 +161,8 @@ fi
 if [[ "$STARSHIP"x == "true"x ]]; then
   APPLICATION=starship
   echo "##### Installing $APPLICATION #####"
-  STARSHIP_VERSION=$(curl https://api.github.com/repos/starship/starship/releases/latest | jq -r .tag_name)
-  curl -Lo starship-x86_64-unknown-linux-musl.tar.gz https://github.com/starship/starship/releases/download/${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz
+  STARSHIP_VERSION=$(curl -s https://api.github.com/repos/starship/starship/releases/latest | jq -r .tag_name)
+  curl -sLo starship-x86_64-unknown-linux-musl.tar.gz https://github.com/starship/starship/releases/download/${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz
   tar zxvf starship-x86_64-unknown-linux-musl.tar.gz 
   install -Dm755 -t "/usr/local/bin/" starship
   rm starship-x86_64-unknown-linux-musl.tar.gz starship
@@ -189,7 +189,7 @@ if [[ "$POWERSHELL"x == "true"x ]]; then
   source /etc/os-release
 
   # Download the Microsoft repository keys
-  curl -o packages-microsoft-prod.deb -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+  curl -so packages-microsoft-prod.deb -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
 
   # Register the Microsoft repository keys
   dpkg -i packages-microsoft-prod.deb
@@ -211,7 +211,7 @@ if [[ "$NUSHELL"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   NUSHELL_VERSION=$(curl -Ls "https://api.github.com/repos/nushell/nushell/releases/latest" | jq -r .tag_name)
   echo "https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-musl.tar.gz"
-  curl -Lo nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz "https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+  curl -sLo nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz "https://github.com/nushell/nushell/releases/download/${NUSHELL_VERSION}/nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
   tar zxvf nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu.tar.gz nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu/nu
   mv nu-${NUSHELL_VERSION}-x86_64-unknown-linux-gnu/nu .
   install -Dm755 -t "/usr/local/bin" nu
@@ -224,7 +224,7 @@ if [[ "$CARAPACE"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   CARAPACE_VERSION=$(curl -Ls "https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest" | jq -r .tag_name| grep -Po 'v\K[^"]*')
   echo "https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
-  curl -Lo carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz "https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+  curl -sLo carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz "https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
   tar zxvf carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz carapace
   install -Dm755 -t "/usr/local/bin" carapace
   rm -r carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz carapace
@@ -258,7 +258,7 @@ if [[ "$SYFT"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   SYFT_VERSION=$(curl -Ls "https://api.github.com/repos/anchore/syft/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
   echo "https://github.com/anchore/syft/releases/download/v${SYFT_VERSION}/syft_${SYFT_VERSION}_linux_amd64.tar.gz"
-  curl -Lo syft_${SYFT_VERSION}_linux_amd64.tar.gz "https://github.com/anchore/syft/releases/download/v${SYFT_VERSION}/syft_${SYFT_VERSION}_linux_amd64.tar.gz"
+  curl -sLo syft_${SYFT_VERSION}_linux_amd64.tar.gz "https://github.com/anchore/syft/releases/download/v${SYFT_VERSION}/syft_${SYFT_VERSION}_linux_amd64.tar.gz"
   tar zxvf syft_${SYFT_VERSION}_linux_amd64.tar.gz syft
   install -Dm755 -t "/usr/local/bin" syft
   rm syft_${SYFT_VERSION}_linux_amd64.tar.gz
@@ -271,7 +271,7 @@ if [[ "$GRYPE"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   GRYPE_VERSION=$(curl -Ls "https://api.github.com/repos/anchore/grype/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
   echo "https://github.com/anchore/grype/releases/download/v${GRYPE_VERSION}/grype_${GRYPE_VERSION}_linux_amd64.tar.gz"
-  curl -Lo grype_${GRYPE_VERSION}_linux_amd64.tar.gz "https://github.com/anchore/grype/releases/download/v${GRYPE_VERSION}/grype_${GRYPE_VERSION}_linux_amd64.tar.gz"
+  curl -sLo grype_${GRYPE_VERSION}_linux_amd64.tar.gz "https://github.com/anchore/grype/releases/download/v${GRYPE_VERSION}/grype_${GRYPE_VERSION}_linux_amd64.tar.gz"
   tar zxvf grype_${GRYPE_VERSION}_linux_amd64.tar.gz grype
   install -Dm755 -t "/usr/local/bin" grype
   rm grype_${GRYPE_VERSION}_linux_amd64.tar.gz
@@ -284,7 +284,7 @@ if [[ "$COSIGN"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   COSIGN_VERSION=$(curl -Ls "https://api.github.com/repos/sigstore/cosign/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
   echo "https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64"
-  curl -Lo cosign "https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64"
+  curl -sLo cosign "https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64"
   install -Dm755 -t "/usr/local/bin" cosign
   echo "##### Installing $APPLICATION #####"
 fi
@@ -294,7 +294,7 @@ if [[ "$OASDIFF"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
   OASDIFF_VERSION=$(curl -Ls "https://api.github.com/repos/Tufin/oasdiff/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
   echo https://github.com/Tufin/oasdiff/releases/download/v${OASDIFF_VERSION}/oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz
-  curl -Lo oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz https://github.com/Tufin/oasdiff/releases/download/v${OASDIFF_VERSION}/oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz
+  curl -sLo oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz https://github.com/Tufin/oasdiff/releases/download/v${OASDIFF_VERSION}/oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz
   tar zxvf oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz oasdiff
   install -Dm755 -t "/usr/local/bin" oasdiff
   rm oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz
@@ -313,7 +313,7 @@ if [[ "$GITUI"x == "true"x ]]; then
   APPLICATION=gitui
   GITUI_VERSION=$(curl -Ls "https://api.github.com/repos/gitui-org/gitui/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   ecawscli-locallling $APPLICATION - $GITUI_VERSION #####"
-  curl -Lo gitui-linux-x86_64.tar.gz "https://github.com/gitui-org/gitui/releases/download/v${GITUI_VERSION}/gitui-linux-x86_64.tar.gz"
+  curl -sLo gitui-linux-x86_64.tar.gz "https://github.com/gitui-org/gitui/releases/download/v${GITUI_VERSION}/gitui-linux-x86_64.tar.gz"
   tar xvf gitui-linux-x86_64.tar.gz
   rm gitui-linux-x86_64.tar.gz
   install -Dm755 -t "/usr/local/bin" gitui
@@ -324,7 +324,7 @@ if [[ "$LAZYGIT"x == "true"x ]]; then
   APPLICATION=lazygit
   LAZYGIT_VERSION=$(curl -Ls "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION  - $LAZYGIT_VERSION #####"
-  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  curl -sLo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
   tar zxf lazygit.tar.gz lazygit
   install -Dm755 -t "/usr/local/bin" lazygit
   rm lazygit.tar.gz
@@ -335,7 +335,7 @@ if [[ "$LAZYDOCKER"x == "true"x ]]; then
   APPLICATION=lazydocker
   LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $LAZYDOCKER_VERSION #####"
-  curl -Lo lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz"
+  curl -sLo lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz"
   tar zxf lazydocker.tar.gz lazydocker
   install -Dm755 -t "/usr/local/bin" lazydocker
   rm lazydocker.tar.gz
@@ -347,7 +347,7 @@ if [[ "$OXKER"x == "true"x ]]; then
   APPLICATION=oxker
   OXKER_VERSION=$(curl -Ls "https://api.github.com/repos/mrjackwills/oxker/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $OXKER_VERSION #####"
-  curl -Lo oxker.tar.gz https://github.com/mrjackwills/oxker/releases/download/v${OXKER_VERSION}/oxker_linux_x86_64.tar.gz
+  curl -sLo oxker.tar.gz https://github.com/mrjackwills/oxker/releases/download/v${OXKER_VERSION}/oxker_linux_x86_64.tar.gz
   tar zxf oxker.tar.gz oxker
   install -Dm755 -t "/usr/local/bin" oxker
   rm oxker.tar.gz
@@ -358,7 +358,7 @@ if [[ "$K9S"x == "true"x ]]; then
   APPLICATION=k9s
   K9S_VERSION=$(curl -Ls "https://api.github.com/repos/derailed/k9s/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $K9S_VERSION #####"
-  curl -Lo k9s_linux_amd64.deb https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_amd64.deb
+  curl -sLo k9s_linux_amd64.deb https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_amd64.deb
   dpkg --install k9s_linux_amd64.deb 
   rm k9s_linux_amd64.deb 
   echo "##### Installed $APPLICATION #####"
@@ -368,7 +368,7 @@ if [[ "$LOCALSTACK"x == "true"x ]]; then
   APPLICATION=localstack
   LOCALSTACK_VERSION=$(curl -Ls "https://api.github.com/repos/localstack/localstack/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   echo "##### Installing $APPLICATION - $LOCALSTACK_VERSION #####"
-  curl -Lo localstack-linux-x86_64.tar.gz "https://github.com/localstack/localstack-cli/releases/download/v${LOCALSTACK_VERSION}/localstack-cli-${LOCALSTACK_VERSION}-linux-amd64-onefile.tar.gz"
+  curl -sLo localstack-linux-x86_64.tar.gz "https://github.com/localstack/localstack-cli/releases/download/v${LOCALSTACK_VERSION}/localstack-cli-${LOCALSTACK_VERSION}-linux-amd64-onefile.tar.gz"
   tar xvf localstack-linux-x86_64.tar.gz
   rm localstack-linux-x86_64.tar.gz
   install -Dm755 -t "/usr/local/bin" localstack

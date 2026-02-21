@@ -92,9 +92,9 @@ if [[ "$LTEX_LS_PLUS"x == "true"x ]]; then
   curl -sLo ltex-ls.tar.gz https://github.com/ltex-plus/ltex-ls-plus/releases/download/${LTEX_VERSION}/ltex-ls-plus-${LTEX_VERSION}-linux-x64.tar.gz
 
   tar zxvf ltex-ls.tar.gz 
-  mv ltex-ls-plus-${LTEX_VERSION}/lib/* /usr/local/lib
-  mv ltex-ls-plus-${LTEX_VERSION}/bin/* /usr/local/bin
-  mv ltex-ls-plus-${LTEX_VERSION}/jdk* /usr/local
+  install ltex-ls-plus-${LTEX_VERSION}/lib/* /usr/local/lib
+  install ltex-ls-plus-${LTEX_VERSION}/bin/* /usr/local/bin
+  install ltex-ls-plus-${LTEX_VERSION}/jdk* /usr/local
   rm -r ltex-ls-plus-${LTEX_VERSION}
   rm ltex-ls.tar.gz 
   popd

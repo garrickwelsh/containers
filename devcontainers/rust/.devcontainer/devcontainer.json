@@ -29,6 +29,8 @@
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
       "omnisharp": false,
+      "codebook": true,
+      "ltex_ls_plus": true,
       "rust": true,
       "rust_toolchain": "stable"
     }
