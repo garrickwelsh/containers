@@ -1,7 +1,7 @@
 {
     "name": "Environment setup",
     "id": "environment-setup",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Setup the local developer environment after software has been installed.",
     "options": {
         "csharp" : {

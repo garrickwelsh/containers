@@ -8,6 +8,6 @@ if [[ "$CSHARP"x == "true"x ]]; then
 dotnet workload update
 
 # Trust the developer certificate
-su $USER -c "dotnet dev-certs https --trust"
+# su $USER -c "dotnet dev-certs https --trust"
 
 fi

@@ -1,7 +1,7 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {
@@ -44,6 +44,11 @@
             "type": "boolean",
             "default": false,
             "description": "Install codebook language server for spell checking"
+        },
+        "ltex_ls_plus": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install ltex-ls-plu language server for spelling and grammar checking"
         },
         "html" : {
             "type": "boolean",

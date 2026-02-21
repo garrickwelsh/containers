@@ -13,7 +13,7 @@ fi
 if [[ "$OMNISHARP"x == "true"x ]]; then
   OMNISHARP_VERSION=$(curl -s "https://api.github.com/repos/OmniSharp/omnisharp-roslyn/releases/latest" | jq .tag_name |grep -Po 'v\K[^"]*') 
   mkdir -p /tmp/omnisharp && cd /tmp/omnisharp
-  curl -Lo omnisharp-linux-x64-net6.0.tar.gz https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v${OMNISHARP_VERSION}/omnisharp-linux-x64-net6.0.tar.gz
+  curl -sLo omnisharp-linux-x64-net6.0.tar.gz https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v${OMNISHARP_VERSION}/omnisharp-linux-x64-net6.0.tar.gz
   tar zxvf omnisharp-linux-x64-net6.0.tar.gz
   pkgname="OmniSharp"
   install -Dm755 OmniSharp *.dll -t"$pkgdir"/usr/lib/omnisharp
@@ -53,7 +53,7 @@ if [[ "${VUE}"x == "true"x ]]; then
 fi
 
 if [[ "${TERRAFORM}"x == "true"x ]]; then
-  curl https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+  curl -s https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
   apt-get update
   apt-get install -y terraform-ls
@@ -66,24 +66,38 @@ fi
 if [[ "$MARKSMAN"x == "true"x ]]; then
   # Install marksman
   MARKSMAN_VERSION=$(curl -s "https://api.github.com/repos/artempyanykh/marksman/releases/latest" | jq .tag_name | grep -Po '\K[^"]*')
-  curl -Lo marksman https://github.com/artempyanykh/marksman/releases/download/$MARKSMAN_VERSION/marksman-linux-x64
+  curl -sLo marksman https://github.com/artempyanykh/marksman/releases/download/$MARKSMAN_VERSION/marksman-linux-x64
   install -Dm755 -t "/usr/local/bin" marksman
 fi  
 if [[ "$MARKDOWN_OXIDE"x == "true"x ]]; then
   # Install markdown-oxide
   MARKDOWN_OXIDE_VERSION=$(curl -s "https://api.github.com/repos/Feel-ix-343/markdown-oxide/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
-  curl -Lo markdown-oxide https://github.com/Feel-ix-343/markdown-oxide/releases/download/v$MARKDOWN_OXIDE_VERSION/markdown-oxide-v${MARKDOWN_OXIDE_VERSION}-x86_64-unknown-linux-gnu
+  curl -sLo markdown-oxide https://github.com/Feel-ix-343/markdown-oxide/releases/download/v$MARKDOWN_OXIDE_VERSION/markdown-oxide-v${MARKDOWN_OXIDE_VERSION}-x86_64-unknown-linux-gnu
   install -Dm755 -t "/usr/local/bin" markdown-oxide
   rm markdown-oxide
 fi
 
 if [[ "$CODEBOOK"x == "true"x ]]; then
   CODEBOOK_VERSION=$(curl -s "https://api.github.com/repos/blopker/codebook/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
-  curl -Lo codebook-lsp-x86_64-unknown-linux-musl.tar.gz https://github.com/blopker/codebook/releases/download/v$CODEBOOK_VERSION/codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
+  curl -sLo codebook-lsp-x86_64-unknown-linux-musl.tar.gz https://github.com/blopker/codebook/releases/download/v$CODEBOOK_VERSION/codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
   tar zxvf codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
   rm codebook-lsp-x86_64-unknown-linux-musl.tar.gz
   install -Dm755 -t "/usr/local/bin" codebook-lsp
   rm codebook-lsp
+fi
+
+if [[ "$LTEX_LS_PLUS"x == "true"x ]]; then
+  pushd /usr/local
+  LTEX_VERSION=$(curl -s "https://api.github.com/repos/ltex-plus/ltex-ls-plus/releases/latest" | jq -r .tag_name)
+  curl -sLo ltex-ls.tar.gz https://github.com/ltex-plus/ltex-ls-plus/releases/download/${LTEX_VERSION}/ltex-ls-plus-${LTEX_VERSION}-linux-x64.tar.gz
+
+  tar zxvf ltex-ls.tar.gz 
+  mv ltex-ls-plus-${LTEX_VERSION}/lib/* /usr/local/lib
+  mv ltex-ls-plus-${LTEX_VERSION}/bin/* /usr/local/bin
+  mv ltex-ls-plus-${LTEX_VERSION}/jdk* /usr/local
+  rm -r ltex-ls-plus-${LTEX_VERSION}
+  rm ltex-ls.tar.gz 
+  popd
 fi
 
 if [[ "$JQ"x == ""x ]]; then
