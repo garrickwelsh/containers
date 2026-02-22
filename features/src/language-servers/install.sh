@@ -80,7 +80,7 @@ fi
 if [[ "$CODEBOOK"x == "true"x ]]; then
   CODEBOOK_VERSION=$(curl -s "https://api.github.com/repos/blopker/codebook/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
   curl -sLo codebook-lsp-x86_64-unknown-linux-musl.tar.gz https://github.com/blopker/codebook/releases/download/v$CODEBOOK_VERSION/codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
-  tar zxvf codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
+  tar zxf codebook-lsp-x86_64-unknown-linux-musl.tar.gz --group=root --owner=root
   rm codebook-lsp-x86_64-unknown-linux-musl.tar.gz
   install -Dm755 -t "/usr/local/bin" codebook-lsp
   rm codebook-lsp
@@ -91,10 +91,10 @@ if [[ "$LTEX_LS_PLUS"x == "true"x ]]; then
   LTEX_VERSION=$(curl -s "https://api.github.com/repos/ltex-plus/ltex-ls-plus/releases/latest" | jq -r .tag_name)
   curl -sLo ltex-ls.tar.gz https://github.com/ltex-plus/ltex-ls-plus/releases/download/${LTEX_VERSION}/ltex-ls-plus-${LTEX_VERSION}-linux-x64.tar.gz
 
-  tar zxvf ltex-ls.tar.gz 
+  tar zxf ltex-ls.tar.gz ./ltex-ls-plus-${LTEX_VERSION}
   install ltex-ls-plus-${LTEX_VERSION}/lib/* /usr/local/lib
   install ltex-ls-plus-${LTEX_VERSION}/bin/* /usr/local/bin
-  install ltex-ls-plus-${LTEX_VERSION}/jdk* /usr/local
+  mv ltex-ls-plus-${LTEX_VERSION}/jdk* /usr/local
   rm -r ltex-ls-plus-${LTEX_VERSION}
   rm ltex-ls.tar.gz 
   popd
