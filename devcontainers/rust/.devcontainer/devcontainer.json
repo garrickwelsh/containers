@@ -21,6 +21,7 @@
       "jjui": true,
       "jj_desc": true,
       "difftastic" : true,
+      "rustup": true,
       "manpages": true,
       "powershell": true,
       "nushell": true,

@@ -46,13 +46,16 @@ if [[ "${CSS}"x == "true"x ]]; then
   npm install --global vscode-css-languageservice
 fi
 if [[ "${TYPESCRIPT}"x == "true"x ]]; then
+  echo "Install typescript language server"
   npm install --global typescript-language-server typescript
 fi
 if [[ "${VUE}"x == "true"x ]]; then
+  echo "Install vue language server"
   npm install --global @vue/language-server
 fi
 
 if [[ "${TERRAFORM}"x == "true"x ]]; then
+  echo "Install terraform-ls"
   curl -s https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
   apt-get update
@@ -60,17 +63,20 @@ if [[ "${TERRAFORM}"x == "true"x ]]; then
 fi
 
 if [[ "$RUST"x == "true" ]]; then
+  echo "Install rust analyzer"
   su $USER -c "rustup component add rust-analyzer"
 fi
 
 if [[ "$MARKSMAN"x == "true"x ]]; then
   # Install marksman
+  echo "Install Marksman"
   MARKSMAN_VERSION=$(curl -s "https://api.github.com/repos/artempyanykh/marksman/releases/latest" | jq .tag_name | grep -Po '\K[^"]*')
   curl -sLo marksman https://github.com/artempyanykh/marksman/releases/download/$MARKSMAN_VERSION/marksman-linux-x64
   install -Dm755 -t "/usr/local/bin" marksman
 fi  
 if [[ "$MARKDOWN_OXIDE"x == "true"x ]]; then
   # Install markdown-oxide
+  echo "Install Markdown Oxide"
   MARKDOWN_OXIDE_VERSION=$(curl -s "https://api.github.com/repos/Feel-ix-343/markdown-oxide/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
   curl -sLo markdown-oxide https://github.com/Feel-ix-343/markdown-oxide/releases/download/v$MARKDOWN_OXIDE_VERSION/markdown-oxide-v${MARKDOWN_OXIDE_VERSION}-x86_64-unknown-linux-gnu
   install -Dm755 -t "/usr/local/bin" markdown-oxide
@@ -78,6 +84,7 @@ if [[ "$MARKDOWN_OXIDE"x == "true"x ]]; then
 fi
 
 if [[ "$CODEBOOK"x == "true"x ]]; then
+  echo "Install Codebook"
   CODEBOOK_VERSION=$(curl -s "https://api.github.com/repos/blopker/codebook/releases/latest" | jq .tag_name | grep -Po 'v\K[^"]*')
   curl -sLo codebook-lsp-x86_64-unknown-linux-musl.tar.gz https://github.com/blopker/codebook/releases/download/v$CODEBOOK_VERSION/codebook-lsp-x86_64-unknown-linux-musl.tar.gz 
   tar zxf codebook-lsp-x86_64-unknown-linux-musl.tar.gz --group=root --owner=root
@@ -88,6 +95,7 @@ fi
 
 if [[ "$LTEX_LS_PLUS"x == "true"x ]]; then
   pushd /usr/local
+  echo "Install ltex-ls-plus"
   LTEX_VERSION=$(curl -s "https://api.github.com/repos/ltex-plus/ltex-ls-plus/releases/latest" | jq -r .tag_name)
   curl -sLo ltex-ls.tar.gz https://github.com/ltex-plus/ltex-ls-plus/releases/download/${LTEX_VERSION}/ltex-ls-plus-${LTEX_VERSION}-linux-x64.tar.gz
 

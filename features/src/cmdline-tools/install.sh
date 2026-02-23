@@ -289,6 +289,18 @@ if [[ "$COSIGN"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
 fi
 
+
+if [[ "$DIVE"x == "true"x ]]; then
+  APPLICATION=dive
+  echo "##### Installing $APPLICATION #####"
+  DIVE_VERSION=$(curl -Ls "https://api.github.com/repos/wagoodman/dive/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
+  echo "https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb"
+  curl -sLo dive_${DIVE_VERSION}_linux_amd64.deb "https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb"
+  dpkg --install dive_${DIVE_VERSION}_linux_amd64.deb
+  rm dive_${DIVE_VERSION}_linux_amd64.deb
+  echo "##### Installing $APPLICATION #####"
+fi
+
 if [[ "$OASDIFF"x == "true"x ]]; then
   APPLICATION=oasdiff
   echo "##### Installing $APPLICATION #####"
