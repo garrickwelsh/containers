@@ -234,7 +234,21 @@ fi
 if [[ "$TEALDEER"x == "true"x ]]; then
   APPLICATION=tealdeer
   echo "##### Installing $APPLICATION #####"
-  apt-get install -y tealdeer
+
+  TEALDEER_VERSION=$(curl -Ls "https://api.github.com/repos/tealdeer-rs/tealdeer/releases/latest" | jq -r .tag_name| grep -Po 'v\K[^"]*')
+  curl -sLo tldr https://github.com/tealdeer-rs/tealdeer/releases/download/v${TEALDEER_VERSION}/tealdeer-linux-x86_64-musl
+  curl -sLo completions_bash https://github.com/tealdeer-rs/tealdeer/releases/download/v${TEALDEER_VERSION}/completions_bash
+  curl -sLo completions_fish https://github.com/tealdeer-rs/tealdeer/releases/download/v${TEALDEER_VERSION}/completions_fish
+  curl -sLo completions_zsh https://github.com/tealdeer-rs/tealdeer/releases/download/v${TEALDEER_VERSION}/completions_zsh
+
+  install -Dm755 -t "/usr/local/bin" tldr
+
+  install completions_bash /usr/local/share/bash-completion/completions/tldr
+  install completions_fish /usr/local/share/fish/vendor_completions.d/tldr.fish
+  install completions_zsh /usr/local/share/zsh/site-functions/_tldr
+
+  rm completions_bash completions_fish completions_zsh tldr
+
   su $USER -c "tldr --update"
   echo "##### Installed $APPLICATION #####"
 fi
