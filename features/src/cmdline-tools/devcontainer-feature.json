@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.44",
+    "version": "0.0.47",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -142,7 +142,12 @@
         "skopeo" : {
             "type": "boolean",
             "default": true,
-            "description": "Install skopeo to command line utility that performs various operations on container images and image repositories."
+            "description": "Install skopeo a command line utility that performs various operations on container images and image repositories."
+        },
+        "oras" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install oras a command line utility for managing OCI artifacts between OCI repositories."
         },
         "syft" : {
             "type": "boolean",
