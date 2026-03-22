@@ -9,11 +9,22 @@
       "dotnet_outdated" : false,
       "dotnet_ef": false,
       "dotnet_sqlpackage": false,
+      "bun": true,
       "just": true,
+      "jj": true,
+      "jjui": true,
+      "jj_desc": true,
       "difftastic" : true,
+      "manpages": true,
+      "powershell": true,
+      "nushell": true,
+      "carapace": true,
+      "lang": "en_AU.UTF-8"
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
+      "codebook": true,
+      "ltex_ls_plus": true,
       "omnisharp": false
     },
     "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
