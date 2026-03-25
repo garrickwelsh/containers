@@ -41,7 +41,7 @@
       "localstack_aws": false,
       "lang": "en_AU.UTF-8"
     },
-
+    "ghcr.io/devcontainers/features/copilot-cli:1": {},
   }
   "remoteEnv": {
     "PODMAN_USERNS": "keep-id"
