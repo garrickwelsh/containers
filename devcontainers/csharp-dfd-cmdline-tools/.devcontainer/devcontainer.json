@@ -18,6 +18,7 @@
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
     "ghcr.io/garrickwelsh/feature/cmdline-tools:latest": {
       "dotnet_outdated" : true,
+      "dotnet_aspire" : true,
       "dotnet_ef": true,
       "dotnet_sqlpackage": true,
       "dotnet_swagger_cli": true,

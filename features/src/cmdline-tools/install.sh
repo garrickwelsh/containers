@@ -425,6 +425,13 @@ if [[ "$DOTNET_OUTDATED"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+if [[ "$DOTNET_ASPIRE"x == "true"x ]]; then
+  APPLICATION=dotnet_aspire
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "curl -sSL https://aspire.dev/install.sh | bash"
+  echo "##### Installed $APPLICATION #####"
+fi
+
 if [[ "$DOTNET_EF"x == "true"x ]]; then
   APPLICATION=dotnet_ef
   echo "##### Installing $APPLICATION #####"

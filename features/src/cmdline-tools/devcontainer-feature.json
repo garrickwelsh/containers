@@ -1,13 +1,18 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.47",
+    "version": "0.0.48",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
             "type": "boolean",
             "default": false,
             "description": "Install dotnet outdated"
+        },
+        "dotnet_aspire" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install dotnet aspire command line tools"
         },
         "dotnet_ef" : {
             "type": "boolean",
