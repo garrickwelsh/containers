@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.48",
+    "version": "0.0.49",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -93,6 +93,11 @@
             "type": "boolean",
             "default": true,
             "description": "Install bat a cat replacement"
+        },
+        "glow" : {
+            "type": "boolean",
+            "default": true,
+            "description": "Install glow a terminal markdown viewer"
         },
         "gitui" : {
             "type": "boolean",

@@ -315,6 +315,17 @@ if [[ "$DIVE"x == "true"x ]]; then
   echo "##### Installing $APPLICATION #####"
 fi
 
+if [[ "$GLOW"x == "true"x ]]; then
+  APPLICATION=glow
+  echo "##### Installing $APPLICATION #####"
+  GLOW_VERSION=$(curl -Ls "https://api.github.com/repos/charmbracelet/glow/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
+  echo "https://github.com/wagoodman/glow/charmbracelet/download/v${GLOW_VERSION}/glow_${GLOW_VERSION}_amd64.deb"
+  curl -sLo glow_${GLOW_VERSION}_amd64.deb "https://github.com/charmbracelet/glow/releases/download/v${GLOW_VERSION}/glow_${GLOW_VERSION}_amd64.deb"
+  dpkg --install glow_${GLOW_VERSION}_amd64.deb
+  rm glow_${GLOW_VERSION}_amd64.deb
+  echo "##### Installing $APPLICATION #####"
+fi
+
 if [[ "$OASDIFF"x == "true"x ]]; then
   APPLICATION=oasdiff
   echo "##### Installing $APPLICATION #####"
