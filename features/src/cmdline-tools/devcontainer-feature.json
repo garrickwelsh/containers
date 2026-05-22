@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.49",
+    "version": "0.0.54",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -234,6 +234,21 @@
             "type": "boolean",
             "default": false,
             "description": "Install localstack aws cmdline utility to manage infrastructure in localstack."
+        },
+        "opencode" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install the opencode cli agent"
+        },
+        "gemini" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install the gemeni cli agent"
+        },
+        "copilot" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install the github copilot cli agent"
         },
         "lang" : {
             "type": "string",

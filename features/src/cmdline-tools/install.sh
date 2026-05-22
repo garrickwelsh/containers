@@ -139,6 +139,11 @@ if [[ "$WATCHMAN"x == "true"x ]]; then
   apt-get install -y watchman
 fi
 
+if [[ "$OPENCODE"x == "true"x || "$GEMINI"x == "true"x || "$COPILOT"x == "true"x ]]; then
+  BUN="true"  
+fi
+
+
 if [[ "$BUN"x == "true"x ]]; then
   APPLICATION=BUN
   echo "##### Installing $APPLICATION #####"
@@ -155,7 +160,29 @@ if [[ "$BUN"x == "true"x ]]; then
   rm -r $pkgdir
   rm $BUN_ZIP
 
+  su $USER -c "echo PATH='$PATH:$HOME/.bun/bin' >> ~/.bashrc"
   # su $USER -c "curl -fsSL https://bun.com/install | bash"
+fi
+
+if [[ "$OPENCODE"x == "true"x ]]; then
+  APPLICATION=opencode
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "bun install -g opencode-ai"
+  apt-get install -y pipx
+  su $USER -c "pipx install 'graphifyy[watch]'"
+  su $USER -c "echo PATH='$PATH:$HOME/.local/bin' >> ~/.bashrc"
+fi
+
+if [[ "$GEMINI"x == "true"x ]]; then
+  APPLICATION=gemini
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "bun install -g @google/gemini-cli"
+fi
+
+if [[ "$COPILOT"x == "true"x ]]; then
+  APPLICATION=copilot
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "bun install -g @github/copilot"
 fi
 
 if [[ "$STARSHIP"x == "true"x ]]; then

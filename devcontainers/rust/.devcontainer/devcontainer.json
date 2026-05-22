@@ -26,6 +26,9 @@
       "powershell": true,
       "nushell": true,
       "carapace": true,
+      "opencode": true,
+      "gemini": true,
+      "copilot": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {

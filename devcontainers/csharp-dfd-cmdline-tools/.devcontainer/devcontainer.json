@@ -33,6 +33,8 @@
       "powershell": true,
       "nushell": true,
       "carapace": true,
+      "copilot": true,
+      "opencode": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
