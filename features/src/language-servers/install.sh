@@ -93,6 +93,20 @@ if [[ "$CODEBOOK"x == "true"x ]]; then
   rm codebook-lsp
 fi
 
+if [[ "$DOCOLINT"x == "true"x ]]; then
+  APPLICATION=docolint
+  echo "##### Installing $APPLICATION #####"
+  DOCOLINT_VERSION=$(curl -Ls "https://api.github.com/repos/garrickwelsh/docolint/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
+  DOCOLINT_TAR=docolint-x86_64-unknown-linux-gnu.tar.gz
+  pkgname=docolint
+  curl -LO "https://github.com/garrickwelsh/docolint/releases/download/v${DOCOLINT_VERSION}/${DOCOLINT_TAR}
+  tar zxvf $DOCOLINT_TAR
+  rm $DOCOLINT_TAR
+  install -Dm755 -t "${pkgdir}/usr/local/bin" "${pkgname}"
+  rm ${pkgname}
+  echo "##### Installed $APPLICATION #####"
+fi
+
 if [[ "$LTEX_LS_PLUS"x == "true"x ]]; then
   pushd /usr/local
   echo "Install ltex-ls-plus"

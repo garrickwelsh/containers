@@ -512,12 +512,14 @@ fi
 
 if [[ "$ORAS"x == "true"x ]]; then
   APPLICATION=oras
+  echo "##### Installing $APPLICATION #####"
   ORAS_VERSION=$(curl -Ls "https://api.github.com/repos/oras-project/oras/releases/latest" | jq -r .tag_name | grep -Po 'v\K[^"]*')
   curl -LO "https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz"
   mkdir -p oras-install/
   tar -zxf oras_${ORAS_VERSION}_*.tar.gz -C oras-install/
   mv oras-install/oras /usr/local/bin/
   rm -rf oras_${ORAS_VERSION}_*.tar.gz oras-install/
+  echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$RUSTUP"x == "true"x ]]; then

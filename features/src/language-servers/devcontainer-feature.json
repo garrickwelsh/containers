@@ -1,7 +1,7 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {
@@ -45,10 +45,15 @@
             "default": false,
             "description": "Install codebook language server for spell checking"
         },
+        "docolint": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install the docolint language server for spelling and grammar of documentation comments and markdown"
+        },
         "ltex_ls_plus": {
             "type": "boolean",
             "default": false,
-            "description": "Install ltex-ls-plu language server for spelling and grammar checking"
+            "description": "Install ltex-ls-plus language server for spelling and grammar checking (recommend using docolint instead)"
         },
         "html" : {
             "type": "boolean",

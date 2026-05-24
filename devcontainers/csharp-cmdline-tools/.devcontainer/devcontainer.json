@@ -38,6 +38,8 @@
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
       "codebook": true,
+      "docolint": true,
+      "ltex_ls_plus": false,
       "omnisharp": true
     },
     "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
