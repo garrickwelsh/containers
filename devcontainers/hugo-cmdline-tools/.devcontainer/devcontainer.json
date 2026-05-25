@@ -21,10 +21,12 @@
       "carapace": true,
       "copilot": true,
       "opencode": true,
+      "herdr": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
       "codebook": true,
+      "docklint": true,
       "ltex_ls_plus": true,
       "omnisharp": false
     },

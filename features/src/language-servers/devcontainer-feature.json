@@ -1,7 +1,7 @@
 {
     "name": "Language servers",
     "id": "language-servers",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "description": "Install language servers to support editors.",
     "options": {
         "yaml" : {

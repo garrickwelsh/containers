@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.54",
+    "version": "0.0.56",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -193,6 +193,11 @@
             "type": "boolean",
             "default": true,
             "description": "Install tmux a terminal multiplexer."
+        },
+        "herdr" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install a terminal multiplexer with AI agent integration."
         },
         "rustup" : {
             "type": "boolean",

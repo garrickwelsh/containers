@@ -27,6 +27,7 @@
       "jj": true,
       "jjui": true,
       "jj_desc": true,
+      "herdr": true,
       "difftastic" : true,
       "manpages": true,
       "powershell": true,

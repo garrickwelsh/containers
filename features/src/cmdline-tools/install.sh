@@ -294,6 +294,17 @@ if [[ "$TMUX"x == "true"x ]]; then
   echo "##### Installed $APPLICATION #####"
 fi
 
+if [[ "$HERDR"x == "true"x ]]; then
+  APPLICATION=herdr
+  echo "##### Installing $APPLICATION #####"
+  SYFT_VERSION=$(curl -Ls "https://api.github.com/repos/ogulcancelik/herdr/releases/latest" | jq -r .tag_name| \grep -Po 'v\K[^"]*')
+  https://github.com/ogulcancelik/herdr/releases/download/v${SYFT_VERSION}/herdr-linux-x86_64
+  curl -sLo herdr https://github.com/ogulcancelik/herdr/releases/download/v${SYFT_VERSION}/herdr-linux-x86_64
+  install -Dm755 -t "/usr/local/bin" herdr
+  rm herdr
+  echo "##### Installed $APPLICATION #####"
+fi
+
 if [[ "$SYFT"x == "true"x ]]; then
   APPLICATION=syft
   echo "##### Installing $APPLICATION #####"
