@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.56",
+    "version": "0.0.57",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -129,6 +129,11 @@
             "default": true,
             "description": "Install lazydocker a terminal ui for docker."
         },
+        "mdserve": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install mdserve an http serve to view markdown documents."
+        },
         "oxker" : {
             "type": "boolean",
             "default": true,
@@ -254,6 +259,11 @@
             "type": "boolean",
             "default": false,
             "description": "Install the github copilot cli agent"
+        },
+        "codex" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install the open api cli agent"
         },
         "lang" : {
             "type": "string",

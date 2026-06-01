@@ -185,6 +185,18 @@ if [[ "$COPILOT"x == "true"x ]]; then
   su $USER -c "bun install -g @github/copilot"
 fi
 
+if [[ "$CODEX"x == "true"x ]]; then
+  APPLICATION=codex
+  echo "##### Installing $APPLICATION"
+  su $USER -c "curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_NON_INTERACTIVE=1 sh"
+fi
+
+if [[ "$MDSERVE"x == "true"x ]]; then
+  APPLICATION=mdserve
+  echo "##### Installing $APPLICATION"
+  curl -sSfL https://raw.githubusercontent.com/jfernandez/mdserve/main/install.sh | bash
+fi
+
 if [[ "$STARSHIP"x == "true"x ]]; then
   APPLICATION=starship
   echo "##### Installing $APPLICATION #####"

@@ -30,6 +30,7 @@
       "herdr": true,
       "difftastic" : true,
       "manpages": true,
+      "mdserve": true,
       "powershell": true,
       "nushell": true,
       "carapace": true,
