@@ -19,15 +19,16 @@
       "powershell": true,
       "nushell": true,
       "carapace": true,
-      "copilot": true,
+      "copilot": false,
       "opencode": true,
+      "gemini": true,
       "herdr": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
       "codebook": true,
-      "docklint": true,
-      "ltex_ls_plus": true,
+      "docolint": true,
+      "ltex_ls_plus": false,
       "omnisharp": false
     },
     "ghcr.io/garrickwelsh/feature/environment-setup:latest": {
