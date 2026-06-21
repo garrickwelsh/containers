@@ -139,7 +139,7 @@ if [[ "$WATCHMAN"x == "true"x ]]; then
   apt-get install -y watchman
 fi
 
-if [[ "$OPENCODE"x == "true"x || "$GEMINI"x == "true"x || "$COPILOT"x == "true"x ]]; then
+if [[ "$OPENCODE"x == "true"x || "$GEMINI"x == "true"x || "$COPILOT"x == "true"x || "$PI"x == "true"x ]]; then
   BUN="true"  
 fi
 
@@ -189,6 +189,12 @@ if [[ "$CODEX"x == "true"x ]]; then
   APPLICATION=codex
   echo "##### Installing $APPLICATION"
   su $USER -c "curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_NON_INTERACTIVE=1 sh"
+fi
+
+if [[ "$PI"x == "true"x ]]; then
+  APPLICATION=pi
+  echo "##### Installing $APPLICATION #####"
+  su $USER -c "bun add -g --ignore-scripts @earendil-works/pi-coding-agent"
 fi
 
 if [[ "$MDSERVE"x == "true"x ]]; then

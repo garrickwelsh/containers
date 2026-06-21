@@ -1,7 +1,7 @@
 {
     "name": "cmdline tools",
     "id": "cmdline-tools",
-    "version": "0.0.58",
+    "version": "0.0.59",
     "description": "Download the latest cmdline and tui tools.",
     "options": {
         "dotnet_outdated" : {
@@ -264,6 +264,11 @@
             "type": "boolean",
             "default": false,
             "description": "Install the open api cli agent"
+        },
+        "pi" : {
+            "type": "boolean",
+            "default": false,
+            "description": "Install the PI agent"
         },
         "lang" : {
             "type": "string",

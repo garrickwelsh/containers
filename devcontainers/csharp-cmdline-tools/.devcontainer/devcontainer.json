@@ -36,6 +36,7 @@
       "carapace": true,
       "copilot": true,
       "opencode": true,
+      "pi": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
