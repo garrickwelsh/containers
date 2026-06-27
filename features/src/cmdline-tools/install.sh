@@ -139,7 +139,7 @@ if [[ "$WATCHMAN"x == "true"x ]]; then
   apt-get install -y watchman
 fi
 
-if [[ "$OPENCODE"x == "true"x || "$GEMINI"x == "true"x || "$COPILOT"x == "true"x || "$PI"x == "true"x ]]; then
+if [[ "$OPENCODE"x == "true"x || "$GEMINI"x == "true"x || "$COPILOT"x == "true"x ]]; then
   BUN="true"  
 fi
 
@@ -193,8 +193,9 @@ fi
 
 if [[ "$PI"x == "true"x ]]; then
   APPLICATION=pi
+  apt-get install -y npm
   echo "##### Installing $APPLICATION #####"
-  su $USER -c "bun add -g --ignore-scripts @earendil-works/pi-coding-agent"
+  su $USER -c "npm add -g --ignore-scripts @earendil-works/pi-coding-agent"
 fi
 
 if [[ "$MDSERVE"x == "true"x ]]; then
