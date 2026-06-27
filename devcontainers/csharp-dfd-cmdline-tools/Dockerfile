@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:noble as intermediate
+FROM mcr.microsoft.com/devcontainers/base:resolute AS intermediate
 
 ######### Code Snippets ###########
 

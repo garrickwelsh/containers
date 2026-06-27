@@ -6,7 +6,7 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/docker-from-docker": {
-      "moby": true
+      "moby": false
     },
     "ghcr.io/devcontainers/features/sshd:1": {
         "version": "latest"

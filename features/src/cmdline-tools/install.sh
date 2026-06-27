@@ -195,7 +195,7 @@ if [[ "$PI"x == "true"x ]]; then
   APPLICATION=pi
   apt-get install -y npm
   echo "##### Installing $APPLICATION #####"
-  su $USER -c "npm add -g --ignore-scripts @earendil-works/pi-coding-agent"
+  npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 fi
 
 if [[ "$MDSERVE"x == "true"x ]]; then
