@@ -31,6 +31,8 @@
       "gemini": true,
       "copilot": true,
       "codex": true,
+      "herdr": true,
+      "pi": true,
       "lang": "en_AU.UTF-8"
     },
     "ghcr.io/garrickwelsh/feature/language-servers:latest": {
