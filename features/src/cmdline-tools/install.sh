@@ -232,24 +232,30 @@ if [[ "$POWERSHELL"x == "true"x ]]; then
   APPLICATION=powershell
   echo "##### Installing $APPLICATION #####"
   # Get the version of Ubuntu
-  source /etc/os-release
+  # source /etc/os-release
 
   # Download the Microsoft repository keys
-  curl -so packages-microsoft-prod.deb -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+  # curl -so packages-microsoft-prod.deb -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
 
   # Register the Microsoft repository keys
-  dpkg -i packages-microsoft-prod.deb
+  # dpkg -i packages-microsoft-prod.deb
 
   # Delete the Microsoft repository keys file
-  rm packages-microsoft-prod.deb
+  # rm packages-microsoft-prod.deb
 
   # Update the list of packages after we added packages.microsoft.com
-  sudo apt-get update
+  # sudo apt-get update
 
   ###################################
   # Install PowerShell
-  sudo apt-get install -y powershell
-  echo "##### Installed $APPLICATION #####"
+  # sudo apt-get install -y powershell
+  POWERSHELL_LATEST=$(curl -s https://api.github.com/repos/powershell/powershell/releases/latest)
+  POWERSHELL_VERSION=$(echo $POWERSHELL_LATEST | jq -r .tag_name)
+  POWERSHELL_BINARY=$(echo $POWERSHELL_LATEST | jq -r .body |grep amd64.deb |grep lts| sed 's/^- //' | tr -d '\r' | tr -d '\n')
+  curl -sLo $POWERSHELL_BINARY https://github.com/PowerShell/PowerShell/releases/download/$POWERSHELL_VERSION/$POWERSHELL_BINARY 
+  dpkg --install $POWERSHELL_BINARY
+  rm $POWERSHELL_BINARY
+  # echo "##### Installed $APPLICATION #####"
 fi
 
 if [[ "$NUSHELL"x == "true"x ]]; then
