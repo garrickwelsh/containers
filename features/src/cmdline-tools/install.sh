@@ -534,7 +534,7 @@ if [[ "$DOTNET_AZURE_FUNCTIONS"x == "true"x ]]; then
   # Install support for azure functions
   APPLICATION="Azure Functions Support"
   echo "##### Installing $APPLICATION #####"
-  apt-get install -y azure-functions-core-tools-4
+  npm install -g azure-functions-core-tools@4 --unsafe-perm true
   curl -fsSL https://aka.ms/install-azd.sh | bash
   echo "##### Installed $APPLICATION #####"
 fi
