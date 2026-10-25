@@ -167,10 +167,7 @@ fi
 if [[ "$OPENCODE"x == "true"x ]]; then
   APPLICATION=opencode
   echo "##### Installing $APPLICATION #####"
-  su $USER -c "bun install -g opencode-ai"
-  apt-get install -y pipx
-  su $USER -c "pipx install 'graphifyy[watch]'"
-  su $USER -c 'echo export PATH="\$PATH:\$HOME/.local/bin" >> ~/.bashrc'
+  su $USER -c "bun install -g --trust @opencode/cli"
 fi
 
 if [[ "$GEMINI"x == "true"x ]]; then
